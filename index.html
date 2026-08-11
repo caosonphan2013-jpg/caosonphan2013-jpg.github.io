@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Dorado - Huyền Thoại Thành Phố Vàng</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), 
+                  radial-gradient(circle, #2c1d11 0%, #0a0603 100%);
+      color: #f1c40f;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: rgba(20, 15, 10, 0.9);
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+      overflow: hidden;
+    }
+
+    .header {
+      text-align: center;
+      padding: 25px 15px 15px;
+    }
+
+    .header h1 {
+      font-size: 26px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(241, 196, 15, 0.6);
+      color: #f39c12;
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #342210;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 12px;
+      background: none;
+      border: none;
+      color: #888;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tab-btn.active {
+      color: #f1c40f;
+      border-bottom: 2px solid #f1c40f;
+      background: rgba(212, 175, 55, 0.1);
+    }
+
+    .form-container {
+      padding: 25px;
+    }
+
+    .form {
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .form.active {
+      display: flex;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 15px;
+      background: #120c07;
+      border: 1px solid #5c4018;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .input-group input:focus {
+      border-color: #f1c40f;
+      box-shadow: 0 0 5px rgba(241, 196, 15, 0.4);
+    }
+
+    .submit-btn {
+      padding: 12px;
+      background: linear-gradient(135deg, #f39c12, #d35400);
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .submit-btn:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1>EL DORADO</h1>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('login')">Đăng Nhập</button>
+      <button class="tab-btn" onclick="switchTab('register')">Đăng Ký</button>
+    </div>
+
+    <div class="form-container">
+      <!-- Form Đăng Nhập -->
+      <form id="login-form" class="form active" onsubmit="handleAuth(event, 'Đăng nhập')">
+        <div class="input-group">
+          <input type="text" placeholder="Tên tài khoản hoặc Email" required>
+        </div>
+        <div class="input-group">
+          <input type="password" placeholder="Mật khẩu" required>
+        </div>
+        <button type="submit" class="submit-btn">Vào Game</button>
+      </form>
+
+      <!-- Form Đăng Ký -->
+      <form id="register-form" class="form" onsubmit="handleAuth(event, 'Đăng ký')">
+        <div class="input-group">
+          <input type="text" placeholder="Tên nhân vật" required>
+        </div>
+        <div class="input-group">
+          <input type="email" placeholder="Địa chỉ Email" required>
+        </div>
+        <div class="input-group">
+          <input type="password" placeholder="Mật khẩu" required>
+        </div>
+        <button type="submit" class="submit-btn">Tạo Tài Khoản</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tab) {
+      const loginForm = document.getElementById('login-form');
+      const registerForm = document.getElementById('register-form');
+      const buttons = document.querySelectorAll('.tab-btn');
+
+      if (tab === 'login') {
+        loginForm.classList.add('active');
+        registerForm.classList.remove('active');
+        buttons[0].classList.add('active');
+        buttons[1].classList.remove('active');
+      } else {
+        registerForm.classList.add('active');
+        loginForm.classList.remove('active');
+        buttons[1].classList.add('active');
+        buttons[0].classList.remove('active');
+      }
+    }
+
+    function handleAuth(event, type) {
+      event.preventDefault();
+      alert(type + ' thành công! Đang chuyển hướng vào thành phố vàng...');
+    }
+  </script>
+
+</body>
+</html>
