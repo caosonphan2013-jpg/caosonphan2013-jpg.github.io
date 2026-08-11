@@ -5,22 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>El Dorado</title>
   <style>
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
     }
 
     body {
-      background-color: #000;
-      overflow: hidden;
-    }
-
-    .game-background {
-      /* Ép trình duyệt điện thoại phải phủ ảnh kín 100% chiều cao và chiều ngang */
-      height: 100vh;
-      width: 100vw;
-      background-image: url('nengame.jpg');
+      /* Gán thẳng ảnh vào thẻ body và thêm ?v=1 để ép trình duyệt tải mới (phá cache) */
+      background-image: url('nengame.jpg?v=1');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -28,9 +23,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Ký tự &nbsp; (khoảng trắng tàng hình) giúp thẻ không bị trống hoàn toàn -->
-  <div class="game-background">&nbsp;</div>
-
+  <!-- Không cần bất kỳ thẻ div nào ở đây nữa, ảnh sẽ tự tràn màn hình -->
 </body>
 </html>
