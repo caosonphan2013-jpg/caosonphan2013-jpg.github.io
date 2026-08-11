@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
       content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no">
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no">
 
-<title>Lập nhóm - EL DORADO</title>
+<title>EL DORADO - Lập Nhóm</title>
 
 <style>
 
@@ -23,44 +22,30 @@
 
 html,
 body{
-
     width:100%;
     height:100%;
-
     overflow:hidden;
-
     background:#000;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-
-/* =========================================
-   KHUNG CHÍNH
-========================================= */
+/* =====================================================
+   MÀN HÌNH
+===================================================== */
 
 #game{
-
     position:fixed;
-
     inset:0;
-
     overflow:hidden;
-
     background:#000;
-
 }
 
 
-/* =========================================
-   THIẾT KẾ CỐ ĐỊNH
-========================================= */
+/* =====================================================
+   KHUNG GAME 16:9
+===================================================== */
 
 #scene{
-
     position:absolute;
 
     width:1536px;
@@ -79,285 +64,247 @@ body{
 }
 
 
-/* =========================================
-   NỀN
-========================================= */
+/* =====================================================
+   NỀN NẰM DƯỚI TOÀN BỘ GIAO DIỆN
+===================================================== */
 
 #background{
-
     position:absolute;
 
-    inset:0;
+    left:0;
+    top:0;
 
     width:100%;
     height:100%;
 
     object-fit:cover;
 
-    user-select:none;
+    z-index:0;
 
+    user-select:none;
     -webkit-user-drag:none;
 }
 
 
-/* =========================================
-   LỚP TỐI
-========================================= */
+/* lớp phủ rất nhẹ để UI nổi hơn */
 
-.dark{
-
+#shade{
     position:absolute;
-
     inset:0;
 
-    background:
-        linear-gradient(
-            rgba(0,0,0,.06),
-            rgba(0,0,0,.18)
-        );
+    z-index:1;
 
     pointer-events:none;
 
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.10),
+            rgba(0,0,0,.05) 55%,
+            rgba(0,0,0,.18)
+        );
 }
 
 
-/* =========================================
-   HEADER
-========================================= */
+/* =====================================================
+   TẤT CẢ GIAO DIỆN ĐÈ LÊN ẢNH
+===================================================== */
 
-.header{
-
+.ui{
     position:absolute;
-
-    left:20px;
-    right:20px;
-    top:18px;
-
-    height:72px;
-
-    display:flex;
-
-    align-items:center;
-
-    z-index:20;
-
+    inset:0;
+    z-index:10;
 }
 
 
-/* BACK */
+/* =====================================================
+   THANH TRÊN
+===================================================== */
 
 .back{
+    position:absolute;
 
-    width:58px;
-    height:58px;
+    left:22px;
+    top:20px;
 
-    border-radius:15px;
+    width:62px;
+    height:62px;
 
-    border:
-        2px solid
-        rgba(255,255,255,.8);
+    border-radius:16px;
 
-    background:
-        rgba(0,0,0,.35);
+    border:2px solid rgba(255,255,255,.9);
+
+    background:rgba(0,0,0,.35);
 
     color:white;
 
-    font-size:35px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
+    font-size:37px;
 
     cursor:pointer;
 
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.25);
 }
 
+.page-title{
+    position:absolute;
 
-/* TITLE */
-
-.title{
-
-    margin-left:12px;
+    left:96px;
+    top:25px;
 
     color:white;
 
     font-size:42px;
-
-    font-weight:400;
+    font-weight:500;
 
     text-shadow:
-        0 2px 5px
-        rgba(0,0,0,.65);
-
+        0 3px 6px rgba(0,0,0,.7);
 }
 
 
-/* =========================================
-   RESOURCES
-========================================= */
+/* =====================================================
+   TÀI NGUYÊN
+===================================================== */
 
 .resources{
-
     position:absolute;
 
     right:25px;
-    top:15px;
+    top:17px;
 
     display:flex;
-
     gap:10px;
-
 }
 
-
 .resource{
-
-    height:42px;
-
-    min-width:150px;
+    min-width:142px;
+    height:43px;
 
     padding:0 13px;
 
     display:flex;
-
     align-items:center;
 
-    border-radius:22px;
+    border-radius:24px;
 
     background:
-        rgba(0,0,0,.62);
+        rgba(0,0,0,.55);
 
     border:
         1px solid
-        rgba(255,255,255,.28);
+        rgba(255,255,255,.32);
 
     color:white;
 
+    box-shadow:
+        0 3px 10px
+        rgba(0,0,0,.20);
 }
-
 
 .resource-icon{
-
-    font-size:22px;
-
-    margin-right:6px;
-
+    width:30px;
+    font-size:21px;
 }
-
 
 .resource-value{
-
     flex:1;
-
     text-align:center;
-
-    font-size:18px;
-
+    font-size:17px;
+    font-weight:600;
 }
 
 
-/* character count */
+/* =====================================================
+   SỐ NHÂN VẬT
+===================================================== */
 
-.count{
-
+.character-count{
     position:absolute;
 
-    top:89px;
-
     right:30px;
+    top:71px;
 
-    color:white;
+    color:#fff;
 
-    font-size:17px;
+    font-size:16px;
 
     text-shadow:
-        0 2px 4px black;
-
+        0 2px 5px #000;
 }
 
 
-/* =========================================
-   CHARACTER SLOTS
-========================================= */
+/* =====================================================
+   CÁC SLOT NHÂN VẬT
+===================================================== */
 
-.slots{
-
+.character-slots{
     position:absolute;
 
     left:50%;
-
-    top:180px;
+    top:145px;
 
     transform:
         translateX(-50%);
 
-    width:1000px;
-
-    height:145px;
-
     display:flex;
 
-    gap:18px;
-
+    gap:15px;
 }
 
 
-/* SLOT */
+/* slot */
 
 .slot{
-
-    width:180px;
-
-    height:120px;
-
     position:relative;
+
+    width:174px;
+    height:120px;
 
     overflow:hidden;
 
-    border-radius:14px;
+    border-radius:13px;
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(31,89,119,.86),
-            rgba(38,72,95,.86)
-        );
+        rgba(30,80,105,.60);
 
     border:
         2px solid
-        rgba(255,255,255,.12);
+        rgba(255,255,255,.16);
 
+    box-shadow:
+        0 6px 18px rgba(0,0,0,.20),
+        inset 0 0 25px
+        rgba(255,255,255,.06);
 }
 
 
-/* SLOT ACTIVE */
+/* slot đang chọn */
 
-.slot.active{
-
+.slot.selected{
     background:
         linear-gradient(
             145deg,
-            #c27b21,
-            #815017
+            rgba(205,130,30,.94),
+            rgba(116,66,17,.88)
         );
 
     border:
         3px solid
-        #ffd76d;
+        #ffd768;
 
     box-shadow:
-        0 0 18px
-        rgba(255,214,100,.45);
-
+        0 0 20px
+        rgba(255,215,105,.45);
 }
 
 
-/* PLUS */
+/* dấu + */
 
 .plus{
-
     position:absolute;
 
     left:50%;
@@ -366,164 +313,149 @@ body{
     transform:
         translate(-50%,-50%);
 
-    color:#ffd76b;
+    color:#ffd66e;
 
     font-size:62px;
 
     font-weight:200;
 
+    text-shadow:
+        0 2px 5px rgba(0,0,0,.4);
 }
 
 
-/* SLOT IMAGE */
+/* ảnh nhân vật nhỏ */
 
-.slot-image{
-
+.slot-character{
     position:absolute;
 
-    inset:6px;
+    inset:5px;
 
     display:flex;
 
     align-items:center;
-
     justify-content:center;
-
 }
 
-
-.slot-image img{
-
-    max-width:100%;
-    max-height:100%;
+.slot-character img{
+    width:100%;
+    height:100%;
 
     object-fit:contain;
 
     filter:
         drop-shadow(
             0 5px 5px
-            rgba(0,0,0,.4)
+            rgba(0,0,0,.38)
         );
-
 }
 
 
-/* COST */
+/* giá */
 
-.cost{
-
+.slot-cost{
     position:absolute;
 
+    bottom:3px;
     left:0;
     right:0;
-    bottom:3px;
 
     text-align:center;
 
     color:white;
 
-    font-size:17px;
+    font-size:16px;
 
     text-shadow:
-        0 2px 4px black;
-
+        0 2px 4px #000;
 }
 
 
-/* =========================================
-   CHARACTER CARD
-========================================= */
+/* =====================================================
+   BẢNG NHÂN VẬT ĐÈ LÊN NỀN
+===================================================== */
 
-.card{
-
+.character-card{
     position:absolute;
 
     left:50%;
-
-    top:345px;
+    top:300px;
 
     transform:
         translateX(-50%);
 
-    width:265px;
+    width:285px;
+    height:390px;
 
-    height:350px;
-
-    padding:7px;
+    padding:8px;
 
     border-radius:12px;
 
     background:
         linear-gradient(
             180deg,
-            #ffe18d,
-            #aa6e28
+            #ffe493,
+            #a96b25
         );
 
     border:
         4px solid
-        #f2c85e;
+        #f1ca61;
 
     box-shadow:
-        0 14px 35px
-        rgba(0,0,0,.42);
-
-    z-index:15;
+        0 15px 40px
+        rgba(0,0,0,.35);
 
     cursor:pointer;
-
 }
 
 
-/* CARD INNER */
+/* phần trong */
 
 .card-inner{
-
     position:relative;
 
     width:100%;
     height:100%;
 
-    border-radius:6px;
-
     overflow:hidden;
 
-    padding:
-        35px 12px 10px;
+    border-radius:6px;
 
     background:
         linear-gradient(
             180deg,
-            #f5dda8,
-            #dbaa61
+            rgba(255,240,185,.96),
+            rgba(220,170,88,.96)
         );
 
-    color:#593816;
+    padding:
+        38px
+        12px
+        10px;
 
+    color:#5d3712;
 }
 
 
 /* ACT */
 
 .act{
-
     position:absolute;
 
     left:-8px;
-    top:-3px;
+    top:-4px;
 
-    width:68px;
-    height:50px;
+    width:70px;
+    height:52px;
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:#d85a17;
+    background:#d85b18;
 
     color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
     font-size:17px;
 
@@ -535,55 +467,47 @@ body{
             50% 100%,
             0 80%
         );
-
 }
 
 
 /* STAR */
 
-.star{
-
+.card-star{
     position:absolute;
 
-    top:8px;
-
     left:50%;
+    top:8px;
 
     transform:
         translateX(-50%);
 
-    color:#ffe46c;
+    color:#ffe56a;
+
+    font-size:25px;
+
+    text-shadow:
+        0 2px 3px #6d4700;
+}
+
+
+/* TÊN */
+
+.card-name{
+    text-align:center;
 
     font-size:24px;
 
-    text-shadow:
-        0 2px 2px #6d4700;
-
-}
-
-
-/* NAME */
-
-.name{
-
-    text-align:center;
-
-    font-size:23px;
-
     margin-bottom:2px;
-
 }
 
 
-/* CHARACTER */
+/* NHÂN VẬT */
 
-.character{
-
-    width:155px;
-
-    height:155px;
-
+.main-character{
     display:block;
+
+    width:175px;
+    height:175px;
 
     margin:0 auto;
 
@@ -591,30 +515,23 @@ body{
 
     filter:
         drop-shadow(
-            0 6px 5px
-            rgba(0,0,0,.24)
+            0 7px 5px
+            rgba(0,0,0,.25)
         );
-
 }
 
 
 /* INFO */
 
 .info{
-
-    margin-top:1px;
-
+    margin-top:3px;
 }
 
-
 .info-row{
-
-    height:29px;
+    min-height:31px;
 
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
 
     border-top:
@@ -622,21 +539,19 @@ body{
         rgba(80,45,10,.15);
 
     font-size:16px;
-
 }
 
 
-/* =========================================
-   POPUP MENU
-========================================= */
+/* =====================================================
+   MENU KHI CHẠM NHÂN VẬT
+===================================================== */
 
 #characterMenu{
-
-    position:fixed;
-
-    width:170px;
+    position:absolute;
 
     display:none;
+
+    width:180px;
 
     overflow:hidden;
 
@@ -646,136 +561,78 @@ body{
         3px solid
         #858585;
 
-    background:
-        #e8eef4;
-
-    z-index:100;
+    background:#e9eef4;
 
     box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.48);
-
+        0 10px 28px
+        rgba(0,0,0,.45);
 }
-
 
 #characterMenu.show{
-
     display:block;
-
 }
-
-
-/* mũi tên */
-
-#menuArrow{
-
-    position:absolute;
-
-    left:-15px;
-
-    top:95px;
-
-    width:0;
-    height:0;
-
-    border-top:
-        12px solid transparent;
-
-    border-bottom:
-        12px solid transparent;
-
-    border-right:
-        15px solid #858585;
-
-}
-
-
-/* ITEM */
 
 .menu-item{
-
     width:100%;
 
-    min-height:52px;
+    min-height:53px;
 
-    border:none;
+    border:0;
 
     border-bottom:
         1px solid
-        #c2cbd4;
+        #c2cad2;
 
-    background:
-        #e6ecf2;
+    background:#e6ebf0;
 
     color:#222;
 
     font-size:18px;
 
     cursor:pointer;
-
 }
-
 
 .menu-item:last-child{
-
-    border-bottom:none;
-
+    border-bottom:0;
 }
-
 
 .menu-item:active{
-
-    background:#cbd7e2;
-
+    background:#cbd6e0;
 }
-
 
 .menu-item.withdraw{
-
-    background:#ffb100;
-
+    background:#ffb200;
     color:white;
-
 }
 
 
-/* =========================================
-   BOTTOM
-========================================= */
+/* =====================================================
+   DƯỚI CÙNG
+===================================================== */
 
 .bottom{
-
     position:absolute;
 
     left:20px;
     right:20px;
+    bottom:14px;
 
-    bottom:13px;
-
-    height:76px;
+    height:80px;
 
     display:flex;
 
-    align-items:center;
-
     justify-content:center;
-
-    z-index:20;
-
+    align-items:center;
 }
 
 
-/* STAR BUTTON */
+/* nút sao */
 
-.star{
-
+.star-button{
     position:absolute;
 
-    bottom:0;
-
-    width:100px;
-
-    height:70px;
+    width:96px;
+    height:68px;
 
     border-radius:50%;
 
@@ -784,109 +641,98 @@ body{
         rgba(255,255,255,.28);
 
     background:
-        rgba(0,0,0,.20);
+        rgba(0,0,0,.18);
 
     color:white;
 
-    font-size:14px;
+    font-size:13px;
 
     cursor:pointer;
-
 }
 
-
 .s1{left:0;}
-.s2{left:115px;}
-.s3{left:230px;}
-.s4{left:345px;}
+.s2{left:112px;}
+.s3{left:224px;}
+.s4{left:336px;}
 
-.s5{right:345px;}
-.s6{right:230px;}
-.s7{right:115px;}
+.s5{right:336px;}
+.s6{right:224px;}
+.s7{right:112px;}
 .s8{right:0;}
 
 
 /* DRAW */
 
 .draw{
-
-    width:175px;
+    width:180px;
     height:64px;
 
-    margin-right:25px;
+    margin-right:22px;
 
     border-radius:15px;
 
     border:
         3px solid
-        #b36cff;
+        #bb74ff;
 
     background:
         linear-gradient(
             180deg,
-            #8d4cff,
-            #6124c2
+            #8c4dff,
+            #6227c9
         );
 
     color:white;
 
     font-size:23px;
-
     font-weight:bold;
 
     cursor:pointer;
-
 }
 
 
 /* START */
 
 .start{
-
-    width:190px;
+    width:205px;
     height:64px;
 
     border-radius:15px;
 
     border:
         3px solid
-        #d4c07a;
+        #dac27b;
 
     background:
         linear-gradient(
             180deg,
-            #74c5f2,
-            #2f6ec0
+            #79c7f3,
+            #3071c0
         );
 
     color:white;
 
     font-size:21px;
 
-    line-height:22px;
-
     font-weight:bold;
+
+    line-height:22px;
 
     cursor:pointer;
 
     text-shadow:
-        0 2px 3px rgba(0,0,0,.5);
-
+        0 2px 4px
+        rgba(0,0,0,.5);
 }
 
 
-/* =========================================
-   MOBILE LANDSCAPE
-========================================= */
+/* =====================================================
+   SCALE
+===================================================== */
 
-@media(
-    orientation:landscape
-) and (
-    max-height:600px
-){
+@media(max-width:1536px){
 
     #scene{
-
         transform:
             translate(-50%,-50%)
             scale(
@@ -895,22 +741,38 @@ body{
                     calc(100vh / 864)
                 )
             );
-
     }
 
 }
 
 
-/* =========================================
-   PORTRAIT
-========================================= */
+/* ngang điện thoại */
+
+@media(
+    orientation:landscape
+){
+
+    #scene{
+        transform:
+            translate(-50%,-50%)
+            scale(
+                min(
+                    calc(100vw / 1536),
+                    calc(100vh / 864)
+                )
+            );
+    }
+
+}
+
+
+/* dọc điện thoại */
 
 @media(
     orientation:portrait
 ){
 
     #scene{
-
         transform:
             translate(-50%,-50%)
             scale(
@@ -919,7 +781,6 @@ body{
                     calc(100vh / 864)
                 )
             );
-
     }
 
 }
@@ -927,32 +788,27 @@ body{
 </style>
 </head>
 
-
 <body>
 
 <div id="game">
 
+    <!-- NỀN ẢNH -->
     <div id="scene">
-
-
-        <!-- =====================================
-             NỀN
-        ====================================== -->
 
         <img
             id="background"
             src="./nennhom.jpg"
-            alt="Lập nhóm">
+            alt="Nền lập nhóm">
 
+        <div id="shade"></div>
 
-        <div class="dark"></div>
+        <!-- =================================================
+             TẤT CẢ UI ĐÈ TRÊN ẢNH
+        ================================================== -->
 
+        <div class="ui">
 
-        <!-- =====================================
-             HEADER
-        ====================================== -->
-
-        <div class="header">
+            <!-- HEADER -->
 
             <button
                 class="back"
@@ -960,180 +816,138 @@ body{
                 ‹
             </button>
 
-
-            <div class="title">
+            <div class="page-title">
                 Lập nhóm
             </div>
 
 
+            <!-- RESOURCES -->
+
             <div class="resources">
 
                 <div class="resource">
-                    <span class="resource-icon">🐣</span>
-                    <span class="resource-value">0</span>
+                    <div class="resource-icon">🐣</div>
+                    <div class="resource-value">0</div>
                 </div>
 
                 <div class="resource">
-                    <span class="resource-icon">🟣</span>
-                    <span class="resource-value">0</span>
+                    <div class="resource-icon">🟣</div>
+                    <div class="resource-value">0</div>
                 </div>
 
                 <div class="resource">
-                    <span class="resource-icon">🪙</span>
-                    <span class="resource-value">700,000</span>
+                    <div class="resource-icon">🪙</div>
+                    <div class="resource-value">700,000</div>
                 </div>
 
                 <div class="resource">
-                    <span class="resource-icon">♦</span>
-                    <span class="resource-value">665</span>
+                    <div class="resource-icon">♦</div>
+                    <div class="resource-value">665</div>
                 </div>
 
                 <div class="resource">
-                    <span class="resource-icon">BP</span>
-                    <span class="resource-value">0</span>
+                    <div class="resource-icon">BP</div>
+                    <div class="resource-value">0</div>
                 </div>
 
             </div>
 
 
-            <div class="count">
+            <div class="character-count">
                 My Characters : 1/30
             </div>
 
-        </div>
+
+            <!-- CHARACTER SLOTS -->
+
+            <div class="character-slots">
+
+                <div class="slot selected">
+
+                    <div class="slot-character">
+
+                        <img
+                            src="./hengame.png"
+                            alt="Nhân vật">
+
+                    </div>
+
+                    <div class="slot-cost">
+                        💧 30
+                    </div>
+
+                </div>
 
 
-        <!-- =====================================
-             CHARACTER SLOTS
-        ====================================== -->
-
-        <div class="slots">
+                <div class="slot">
+                    <div class="plus">+</div>
+                </div>
 
 
-            <div class="slot active">
+                <div class="slot">
+                    <div class="plus">+</div>
+                </div>
 
-                <div class="slot-image">
+
+                <div class="slot">
+                    <div class="plus">+</div>
+                </div>
+
+
+                <div class="slot">
+                    <div class="plus">+</div>
+                </div>
+
+            </div>
+
+
+            <!-- CHARACTER CARD -->
+
+            <div
+                id="characterCard"
+                class="character-card"
+                onclick="showCharacterMenu(event)">
+
+                <div class="card-inner">
+
+                    <div class="act">
+                        Act.
+                    </div>
+
+                    <div class="card-star">
+                        ★
+                    </div>
+
+                    <div class="card-name">
+                        Ace
+                    </div>
 
                     <img
+                        class="main-character"
                         src="./hengame.png"
                         alt="Ace">
 
-                </div>
+                    <div class="info">
 
-                <div class="cost">
-                    💧 30
-                </div>
+                        <div class="info-row">
+                            <span>Lv.1/20</span>
+                            <span>0%</span>
+                        </div>
 
-            </div>
+                        <div class="info-row">
+                            <span>💧 30</span>
+                            <span>Kiểu tấn công</span>
+                        </div>
 
+                        <div class="info-row">
+                            <span>AP</span>
+                            <span>2</span>
+                        </div>
 
-            <div class="slot">
-                <div class="plus">+</div>
-            </div>
-
-
-            <div class="slot">
-                <div class="plus">+</div>
-            </div>
-
-
-            <div class="slot">
-                <div class="plus">+</div>
-            </div>
-
-
-            <div class="slot">
-                <div class="plus">+</div>
-            </div>
-
-
-        </div>
-
-
-        <!-- =====================================
-             CARD
-        ====================================== -->
-
-        <div
-            id="card"
-            class="card"
-            onclick="showCharacterMenu(event)">
-
-
-            <div class="card-inner">
-
-
-                <div class="act">
-                    Act.
-                </div>
-
-
-                <div class="star">
-                    ★
-                </div>
-
-
-                <div class="name">
-                    Ace
-                </div>
-
-
-                <img
-                    class="character"
-                    src="./hengame.png"
-                    alt="Ace">
-
-
-                <div class="info">
-
-                    <div class="info-row">
-
-                        <span>
-                            Lv.1/20
-                        </span>
-
-                        <span>
-                            0%
-                        </span>
-
-                    </div>
-
-
-                    <div class="info-row">
-
-                        <span>
-                            💧 30
-                        </span>
-
-                        <span>
-                            Kiểu tấn công
-                        </span>
-
-                    </div>
-
-
-                    <div class="info-row">
-
-                        <span>
-                            AP
-                        </span>
-
-                        <span>
-                            2
-                        </span>
-
-                    </div>
-
-
-                    <div class="info-row">
-
-                        <span>
-                            HP
-                        </span>
-
-                        <span>
-                            10
-                        </span>
+                        <div class="info-row">
+                            <span>HP</span>
+                            <span>10</span>
+                        </div>
 
                     </div>
 
@@ -1141,133 +955,96 @@ body{
 
             </div>
 
-        </div>
+
+            <!-- MENU -->
+
+            <div
+                id="characterMenu">
+
+                <button
+                    class="menu-item withdraw"
+                    onclick="menuAction(event,'Rút')">
+                    Rút
+                </button>
+
+                <button
+                    class="menu-item"
+                    onclick="menuAction(event,'Bán')">
+                    Bán
+                </button>
+
+                <button
+                    class="menu-item"
+                    onclick="menuAction(event,'Nâng cấp độ')">
+                    Nâng cấp độ
+                </button>
+
+                <button
+                    class="menu-item"
+                    onclick="menuAction(event,'Item')">
+                    Item
+                </button>
+
+                <button
+                    class="menu-item"
+                    onclick="menuAction(event,'Lock')">
+                    Lock
+                </button>
+
+            </div>
 
 
-        <!-- =====================================
-             MENU NHÂN VẬT
-        ====================================== -->
+            <!-- BOTTOM -->
 
-        <div
-            id="characterMenu">
+            <div class="bottom">
 
-            <div id="menuArrow"></div>
+                <button class="star-button s1">
+                    Moving<br>1 star
+                </button>
 
+                <button class="star-button s2">
+                    Moving<br>2 star
+                </button>
 
-            <button
-                class="menu-item withdraw"
-                onclick="action(event,'Rút')">
-                Rút
-            </button>
+                <button class="star-button s3">
+                    Moving<br>3 star
+                </button>
 
+                <button class="star-button s4">
+                    Moving<br>4 star
+                </button>
 
-            <button
-                class="menu-item"
-                onclick="action(event,'Bán')">
-                Bán
-            </button>
+                <button
+                    class="draw"
+                    onclick="draw()">
+                    🎴 Draw
+                </button>
 
+                <button
+                    class="start"
+                    onclick="startGame()">
+                    Bắt đầu trò chơi
+                </button>
 
-            <button
-                class="menu-item"
-                onclick="action(event,'Nâng cấp độ')">
-                Nâng cấp độ
-            </button>
+                <button class="star-button s5">
+                    Moving<br>5 star
+                </button>
 
+                <button class="star-button s6">
+                    Moving<br>6 star
+                </button>
 
-            <button
-                class="menu-item"
-                onclick="action(event,'Item')">
-                Item
-            </button>
+                <button class="star-button s7">
+                    Moving<br>7 star
+                </button>
 
+                <button class="star-button s8">
+                    Moving<br>8 star
+                </button>
 
-            <button
-                class="menu-item"
-                onclick="action(event,'Lock')">
-                Lock
-            </button>
-
-
-            <button
-                class="menu-item"
-                onclick="closeMenu(event)">
-                Đóng
-            </button>
-
-        </div>
-
-
-        <!-- =====================================
-             BOTTOM
-        ====================================== -->
-
-        <div class="bottom">
-
-
-            <button
-                class="star s1">
-                Moving<br>1 star
-            </button>
-
-
-            <button
-                class="star s2">
-                Moving<br>2 star
-            </button>
-
-
-            <button
-                class="star s3">
-                Moving<br>3 star
-            </button>
-
-
-            <button
-                class="star s4">
-                Moving<br>4 star
-            </button>
-
-
-            <button
-                class="draw"
-                onclick="draw()">
-                🎴 Draw
-            </button>
-
-
-            <button
-                class="start"
-                onclick="startGame()">
-                Bắt đầu trò chơi
-            </button>
-
-
-            <button
-                class="star s5">
-                Moving<br>5 star
-            </button>
-
-
-            <button
-                class="star s6">
-                Moving<br>6 star
-            </button>
-
-
-            <button
-                class="star s7">
-                Moving<br>7 star
-            </button>
-
-
-            <button
-                class="star s8">
-                Moving<br>8 star
-            </button>
+            </div>
 
         </div>
-
 
     </div>
 
@@ -1276,31 +1053,29 @@ body{
 
 <script>
 
-/* =========================================
-   VỀ GIAO DIỆN CHÍNH
-========================================= */
+/* =====================================================
+   QUAY LẠI
+===================================================== */
 
 function goBack(){
 
-    window.location.assign(
-        "./giaodien.html"
-    );
+    window.location.href =
+        "./giaodien.html";
 
 }
 
 
-/* =========================================
-   HIỆN MENU NHÂN VẬT
-========================================= */
+/* =====================================================
+   CHẠM NHÂN VẬT
+===================================================== */
 
 function showCharacterMenu(event){
 
     event.stopPropagation();
 
-
     const card =
         document.getElementById(
-            "card"
+            "characterCard"
         );
 
     const menu =
@@ -1309,24 +1084,23 @@ function showCharacterMenu(event){
         );
 
 
-    const cardRect =
+    const rect =
         card.getBoundingClientRect();
 
 
     /*
-       Menu mở ở bên phải
-       thẻ nhân vật.
+       Vị trí theo tọa độ màn hình.
+       Menu hiện ngay bên phải thẻ.
     */
 
     menu.style.left =
         (
-            cardRect.right + 12
+            rect.right + 10
         ) + "px";
-
 
     menu.style.top =
         (
-            cardRect.top + 25
+            rect.top + 35
         ) + "px";
 
 
@@ -1337,102 +1111,47 @@ function showCharacterMenu(event){
 }
 
 
-/* =========================================
-   CLICK RA NGOÀI
-========================================= */
+/* =====================================================
+   CHẠM RA NGOÀI
+===================================================== */
 
 document.addEventListener(
     "click",
     function(){
 
-        closeMenu();
+        document
+            .getElementById(
+                "characterMenu"
+            )
+            .classList
+            .remove("show");
 
     }
 );
 
 
-/* =========================================
-   MENU ACTION
-========================================= */
+/* =====================================================
+   MENU
+===================================================== */
 
-function action(
+function menuAction(
     event,
-    name
+    action
 ){
 
     event.stopPropagation();
 
-
-    if(name === "Rút"){
-
-        alert(
-            "Đã chọn: Rút"
-        );
-
-    }
-
-    else if(name === "Bán"){
-
-        alert(
-            "Đã chọn: Bán"
-        );
-
-    }
-
-    else if(
-        name === "Nâng cấp độ"
-    ){
-
-        alert(
-            "Nâng cấp độ"
-        );
-
-    }
-
-    else if(name === "Item"){
-
-        alert(
-            "Item"
-        );
-
-    }
-
-    else if(name === "Lock"){
-
-        alert(
-            "Lock"
-        );
-
-    }
+    alert(
+        "Bạn chọn: " +
+        action
+    );
 
 }
 
 
-/* =========================================
-   ĐÓNG MENU
-========================================= */
-
-function closeMenu(
-    event
-){
-
-    if(event){
-        event.stopPropagation();
-    }
-
-    document
-        .getElementById(
-            "characterMenu"
-        )
-        .classList
-        .remove("show");
-
-}
-
-
-/* =========================================
+/* =====================================================
    DRAW
-========================================= */
+===================================================== */
 
 function draw(){
 
@@ -1443,17 +1162,55 @@ function draw(){
 }
 
 
-/* =========================================
-   GAME START
-========================================= */
+/* =====================================================
+   START
+===================================================== */
 
 function startGame(){
 
     alert(
-        "Bắt đầu trò chơi."
+        "Bắt đầu trò chơi!"
     );
 
 }
+
+
+/* =====================================================
+   KIỂM TRA ẢNH
+===================================================== */
+
+document
+    .getElementById("background")
+    .addEventListener(
+        "error",
+        function(){
+
+            document.body.innerHTML = `
+                <div style="
+                    color:white;
+                    background:#111;
+                    width:100vw;
+                    height:100vh;
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    text-align:center;
+                    font-family:Arial;
+                    padding:30px;">
+                    <div>
+                        <h2>
+                            ❌ Không tải được nennhom.jpg
+                        </h2>
+                        <p>
+                            Hãy kiểm tra file
+                            <b>nennhom.jpg</b>
+                            trong GitHub.
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+    );
 
 </script>
 
