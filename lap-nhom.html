@@ -7,97 +7,53 @@
   <link rel="stylesheet" href="lap-nhom.css">
 </head>
 <body>
-
 <div id="screen">
   <img id="bg" src="nennhom.jpg" alt="">
-  <div id="ui">
+  <div id="overlay">
 
-    <!-- TOP BAR -->
-    <div id="top-bar">
-      <a href="index.html" id="back-btn">&#8592; Lập nhóm</a>
-      <div id="resources">
-        <span class="res"><span class="res-icon char-icon">🧙</span><span class="res-val">0</span></span>
-        <span class="res"><span class="res-icon">💜</span><span class="res-val">0</span></span>
-        <span class="res"><span class="res-icon">🪙</span><span class="res-val">700,000</span></span>
-        <span class="res"><span class="res-icon">💎</span><span class="res-val">665</span></span>
-        <span class="res bp"><span class="res-icon">BP</span><span class="res-val">0</span></span>
-      </div>
-      <div id="my-chars">My Characters : 1/30</div>
+    <!-- Nút back -->
+    <button class="hit" id="btn-back"    onclick="goBack()"></button>
+
+    <!-- 5 slot nhân vật -->
+    <button class="hit" id="slot-0"      onclick="clickSlot(0)"></button>
+    <button class="hit" id="slot-1"      onclick="clickSlot(1)"></button>
+    <button class="hit" id="slot-2"      onclick="clickSlot(2)"></button>
+    <button class="hit" id="slot-3"      onclick="clickSlot(3)"></button>
+    <button class="hit" id="slot-4"      onclick="clickSlot(4)"></button>
+
+    <!-- Card nhân vật Ace -->
+    <button class="hit" id="btn-card"    onclick="toggleMenu()"></button>
+
+    <!-- Draw + Bắt đầu -->
+    <button class="hit" id="btn-draw"    onclick="showToast('Draw!')"></button>
+    <button class="hit" id="btn-start"   onclick="showToast('Bắt đầu trò chơi!')"></button>
+
+    <!-- Moving circles trái -->
+    <button class="hit" id="mc-0" onclick="showToast('Moving 1 star')"></button>
+    <button class="hit" id="mc-1" onclick="showToast('Moving 2 star')"></button>
+    <button class="hit" id="mc-2" onclick="showToast('Moving 3 star')"></button>
+    <button class="hit" id="mc-3" onclick="showToast('Moving 4 star')"></button>
+
+    <!-- Moving circles phải -->
+    <button class="hit" id="mc-4" onclick="showToast('Moving 5 star')"></button>
+    <button class="hit" id="mc-5" onclick="showToast('Moving 6 star')"></button>
+    <button class="hit" id="mc-6" onclick="showToast('Moving 7 star')"></button>
+    <button class="hit" id="mc-7" onclick="showToast('Moving 8 star')"></button>
+
+    <!-- Context menu khi bấm card -->
+    <div id="ctx-menu" class="hidden">
+      <button class="ctx-item highlight" onclick="ctxAction('Rút')">Rút</button>
+      <button class="ctx-item"           onclick="ctxAction('Bán')">Bán</button>
+      <button class="ctx-item"           onclick="ctxAction('Nâng cấp độ')">Nâng cấp độ</button>
+      <button class="ctx-item"           onclick="ctxAction('Item')">Item</button>
+      <button class="ctx-item"           onclick="ctxAction('Lock')">Lock</button>
+      <button class="ctx-item"           onclick="closeMenu()">Đóng</button>
     </div>
 
-    <!-- SLOTS -->
-    <div id="slots-wrap">
-      <div id="slots">
-        <div class="slot filled" onclick="selectSlot(0)">
-          <span class="slot-star">⭐</span>
-          <div class="slot-char">🐧</div>
-          <div class="slot-info"><span class="slot-elem">💧</span> 30</div>
-        </div>
-        <div class="slot empty" onclick="selectSlot(1)"><span class="plus">+</span></div>
-        <div class="slot empty" onclick="selectSlot(2)"><span class="plus">+</span></div>
-        <div class="slot empty" onclick="selectSlot(3)"><span class="plus">+</span></div>
-        <div class="slot empty" onclick="selectSlot(4)"><span class="plus">+</span></div>
-      </div>
-      <div id="vine-bar">🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿🌸🌿</div>
-    </div>
+  </div>
+</div>
 
-    <!-- CHARACTER CARD + CONTEXT MENU -->
-    <div id="card-area">
-      <div id="char-card" onclick="toggleMenu()">
-        <div id="act-badge">Act.</div>
-        <div id="card-header">
-          <span class="card-star">★</span>
-          <span class="card-num">1</span>
-        </div>
-        <div id="card-name">Ace</div>
-        <div id="card-img">🐧</div>
-        <div id="card-lv">
-          <span>Lv.<b>1</b>/20</span>
-          <div id="lv-bar"><div id="lv-fill"></div><span class="lv-pct">0%</span></div>
-        </div>
-        <div id="card-elem"><span>💧</span> 30 <span class="tag">Kiểu tấn công</span></div>
-        <div class="card-stat"><span>AP</span><span>2</span></div>
-        <div class="card-stat"><span>HP</span><span>10</span></div>
-      </div>
-
-      <div id="ctx-menu" class="hidden">
-        <button class="ctx-item active" onclick="ctxAction('Rút')">Rút</button>
-        <button class="ctx-item" onclick="ctxAction('Bán')">Bán</button>
-        <button class="ctx-item" onclick="ctxAction('Nâng cấp độ')">Nâng cấp độ</button>
-        <button class="ctx-item" onclick="ctxAction('Item')">Item</button>
-        <button class="ctx-item" onclick="ctxAction('Lock')">Lock</button>
-        <button class="ctx-item close" onclick="closeMenu()">Đóng</button>
-      </div>
-    </div>
-
-    <!-- BOTTOM BAR -->
-    <div id="bottom-bar">
-      <div class="moving-group" id="moving-left">
-        <div class="moving-circle">Moving<br>1 star</div>
-        <div class="moving-circle">Moving<br>2 star</div>
-        <div class="moving-circle">Moving<br>3 star</div>
-        <div class="moving-circle">Moving<br>4 star</div>
-      </div>
-
-      <div id="action-btns">
-        <button id="draw-btn" onclick="alert('Draw!')">🃏 Draw</button>
-        <button id="start-btn" onclick="alert('Bắt đầu!')">Bắt đầu trò chơi</button>
-      </div>
-
-      <div class="moving-group" id="moving-right">
-        <div class="moving-circle">Moving<br>5 star</div>
-        <div class="moving-circle">Moving<br>6 star</div>
-        <div class="moving-circle">Moving<br>7 star</div>
-        <div class="moving-circle">Moving<br>8 star</div>
-      </div>
-    </div>
-
-  </div><!-- /ui -->
-</div><!-- /screen -->
-
-<!-- TOAST thông báo -->
 <div id="toast" class="hidden"></div>
-
 <script src="lap-nhom.js"></script>
 </body>
 </html>
