@@ -2,737 +2,544 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>EL DORADO</title>
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
+
+<title>EL DORADO - Đăng nhập</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-    font-family: Arial, sans-serif;
-    background: #05070b;
-    color: white;
+html,body{
+    width:100%;
+    min-height:100%;
 }
 
-/* =========================
-   NỀN
-========================= */
+body{
 
-body {
-    min-height: 100vh;
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    font-family:Arial,sans-serif;
+
+    color:white;
 
     background:
         linear-gradient(
-            rgba(2, 7, 15, 0.45),
-            rgba(2, 7, 15, 0.72)
+            rgba(0,0,0,.45),
+            rgba(0,0,0,.75)
         ),
-        url("nennhom.jpg") center center / cover no-repeat fixed;
+        url("nennhom.jpg")
+        center/cover
+        no-repeat fixed;
 }
+
 
 /* =========================
-   TRUNG TÂM
+   KHUNG ĐĂNG NHẬP
 ========================= */
 
-.page {
-    min-height: 100vh;
+.login-box{
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width:100%;
+    max-width:390px;
 
-    padding: 20px;
+    padding:28px 24px;
+
+    border-radius:22px;
+
+    background:
+        rgba(8,13,22,.90);
+
+    border:1px solid
+        rgba(255,215,100,.30);
+
+    box-shadow:
+        0 25px 60px
+        rgba(0,0,0,.60);
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
 }
+
 
 /* =========================
    LOGO
 ========================= */
 
-.logo {
-    text-align: center;
-    margin-bottom: 18px;
+.logo{
+
+    text-align:center;
+
+    margin-bottom:28px;
 }
 
-.logo h1 {
-    font-size: 42px;
-    font-weight: 900;
+.logo h1{
 
-    color: #ffd65a;
+    font-size:38px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    color:#ffd75a;
 
     text-shadow:
-        0 3px 0 #7a4d00,
-        0 0 18px rgba(255, 205, 70, 0.45);
-
-    letter-spacing: 2px;
+        0 3px 0 #734600,
+        0 0 18px
+        rgba(255,210,70,.45);
 }
 
-.logo p {
-    margin-top: 5px;
+.logo p{
 
-    font-size: 13px;
-    color: #c6ccd7;
+    margin-top:8px;
+
+    font-size:13px;
+
+    color:#aab2bf;
 }
+
 
 /* =========================
-   BOX
+   TIÊU ĐỀ
 ========================= */
 
-.card {
-    width: min(92vw, 390px);
+.title{
 
-    padding: 25px;
+    text-align:center;
 
-    border-radius: 22px;
+    margin-bottom:22px;
+}
+
+.title h2{
+
+    font-size:23px;
+
+    margin-bottom:6px;
+}
+
+.title p{
+
+    color:#8993a3;
+
+    font-size:13px;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.input-group{
+
+    margin-bottom:17px;
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:7px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    color:#d2d8e0;
+}
+
+.input-group input{
+
+    width:100%;
+
+    height:48px;
+
+    padding:0 14px;
+
+    border-radius:11px;
+
+    border:1px solid
+        rgba(255,255,255,.12);
 
     background:
-        linear-gradient(
-            160deg,
-            rgba(18, 25, 38, 0.96),
-            rgba(7, 11, 18, 0.96)
-        );
+        rgba(255,255,255,.06);
 
-    border: 1px solid rgba(255, 214, 90, 0.30);
+    color:white;
 
-    box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.55),
-        inset 0 1px 0 rgba(255,255,255,0.05);
+    outline:none;
 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    font-size:15px;
+
+    transition:.2s;
 }
 
-/* =========================
-   TAB
-========================= */
+.input-group input::placeholder{
 
-.tabs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    gap: 6px;
-
-    padding: 5px;
-
-    background: rgba(255,255,255,0.05);
-
-    border-radius: 13px;
-
-    margin-bottom: 20px;
+    color:#697486;
 }
 
-.tab {
-    border: none;
+.input-group input:focus{
 
-    padding: 12px 8px;
+    border-color:#e2b13e;
 
-    border-radius: 9px;
-
-    background: transparent;
-
-    color: #8993a4;
-
-    font-weight: 800;
-
-    cursor: pointer;
-}
-
-.tab.active {
     background:
-        linear-gradient(
-            135deg,
-            #a97008,
-            #ffd85b
-        );
-
-    color: #17120a;
-}
-
-/* =========================
-   FORM
-========================= */
-
-.form {
-    display: none;
-}
-
-.form.active {
-    display: block;
-}
-
-.form h2 {
-    margin-bottom: 7px;
-
-    font-size: 23px;
-}
-
-.form-desc {
-    color: #8e99aa;
-
-    font-size: 13px;
-
-    margin-bottom: 20px;
-}
-
-.input-group {
-    margin-bottom: 14px;
-}
-
-.input-group label {
-    display: block;
-
-    margin-bottom: 7px;
-
-    color: #cbd2dc;
-
-    font-size: 13px;
-
-    font-weight: bold;
-}
-
-.input-group input {
-    width: 100%;
-
-    padding: 13px 14px;
-
-    border-radius: 11px;
-
-    border: 1px solid rgba(255,255,255,0.10);
-
-    outline: none;
-
-    background: rgba(255,255,255,0.06);
-
-    color: white;
-
-    font-size: 15px;
-
-    transition: 0.2s;
-}
-
-.input-group input:focus {
-    border-color: #e2af37;
-
-    background: rgba(255,255,255,0.09);
+        rgba(255,255,255,.09);
 
     box-shadow:
-        0 0 0 3px rgba(226,175,55,0.10);
+        0 0 0 3px
+        rgba(226,177,62,.10);
 }
 
-.input-group input::placeholder {
-    color: #687283;
-}
 
 /* =========================
    PASSWORD
 ========================= */
 
-.password-wrap {
-    position: relative;
+.password{
+
+    position:relative;
 }
 
-.password-wrap input {
-    padding-right: 50px;
+.password input{
+
+    padding-right:50px;
 }
 
-.eye {
-    position: absolute;
+.eye{
 
-    right: 10px;
-    top: 50%;
+    position:absolute;
 
-    transform: translateY(-50%);
+    right:5px;
+    top:5px;
 
-    width: 38px;
-    height: 38px;
+    width:38px;
+    height:38px;
 
-    border: none;
-    background: transparent;
+    border:0;
 
-    color: #aab3c1;
+    background:transparent;
 
-    font-size: 17px;
+    color:#aab2bf;
 
-    cursor: pointer;
+    cursor:pointer;
+
+    font-size:17px;
 }
+
 
 /* =========================
-   OPTIONS
+   ĐĂNG NHẬP
 ========================= */
 
-.options {
-    display: flex;
+.login-btn{
 
-    justify-content: space-between;
+    width:100%;
 
-    align-items: center;
+    height:50px;
 
-    margin: 5px 0 17px;
+    margin-top:5px;
 
-    font-size: 12px;
-}
+    border:0;
 
-.remember {
-    display: flex;
-    align-items: center;
-
-    gap: 7px;
-
-    color: #a9b1bf;
-}
-
-.remember input {
-    accent-color: #e6b743;
-}
-
-.forgot {
-    color: #e7bb4a;
-
-    border: none;
-
-    background: none;
-
-    cursor: pointer;
-}
-
-/* =========================
-   BUTTON
-========================= */
-
-.main-btn {
-    width: 100%;
-
-    padding: 14px;
-
-    border: none;
-
-    border-radius: 12px;
+    border-radius:12px;
 
     background:
         linear-gradient(
             135deg,
-            #b57a0b,
-            #ffd65a
+            #b67908,
+            #ffd75c
         );
 
-    color: #17120a;
+    color:#181107;
 
-    font-size: 15px;
+    font-size:16px;
 
-    font-weight: 900;
+    font-weight:900;
 
-    cursor: pointer;
+    cursor:pointer;
 
     box-shadow:
-        0 10px 25px rgba(214,166,45,0.20);
+        0 10px 25px
+        rgba(220,170,45,.25);
 
-    transition: 0.2s;
+    transition:.15s;
 }
 
-.main-btn:active {
-    transform: scale(0.98);
+.login-btn:active{
+
+    transform:scale(.98);
 }
 
-/* =========================
-   ĐĂNG NHẬP NHANH
-========================= */
-
-.divider {
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    color: #667182;
-
-    font-size: 11px;
-
-    margin: 19px 0;
-}
-
-.divider::before,
-.divider::after {
-    content: "";
-
-    flex: 1;
-
-    height: 1px;
-
-    background: rgba(255,255,255,0.08);
-}
-
-.quick-btn {
-    width: 100%;
-
-    padding: 11px;
-
-    border-radius: 11px;
-
-    border: 1px solid rgba(255,255,255,0.10);
-
-    background: rgba(255,255,255,0.04);
-
-    color: white;
-
-    cursor: pointer;
-}
-
-.quick-btn:active {
-    background: rgba(255,255,255,0.08);
-}
 
 /* =========================
    THÔNG BÁO
 ========================= */
 
-.message {
-    display: none;
+.message{
 
-    padding: 10px 12px;
+    display:none;
 
-    margin-bottom: 14px;
+    margin-bottom:15px;
 
-    border-radius: 10px;
+    padding:11px;
 
-    font-size: 12px;
+    border-radius:10px;
 
-    line-height: 1.4;
+    text-align:center;
+
+    font-size:13px;
 }
 
-.message.error {
-    display: block;
+.message.show{
 
-    color: #ffb0b0;
-
-    border: 1px solid rgba(255,80,80,0.25);
-
-    background: rgba(255,80,80,0.10);
+    display:block;
 }
 
-.message.success {
-    display: block;
+.message.error{
 
-    color: #abefb5;
+    color:#ffb0b0;
 
-    border: 1px solid rgba(90,220,110,0.25);
+    background:
+        rgba(255,70,70,.10);
 
-    background: rgba(90,220,110,0.10);
+    border:1px solid
+        rgba(255,70,70,.25);
 }
+
+.message.success{
+
+    color:#a9efb4;
+
+    background:
+        rgba(70,220,100,.10);
+
+    border:1px solid
+        rgba(70,220,100,.25);
+}
+
+
+/* =========================
+   GHI NHỚ
+========================= */
+
+.remember{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    margin:
+        13px 0
+        18px;
+
+    color:#9da6b5;
+
+    font-size:12px;
+}
+
+.remember input{
+
+    accent-color:#e5b33e;
+}
+
 
 /* =========================
    FOOTER
 ========================= */
 
-.footer {
-    text-align: center;
+.footer{
 
-    margin-top: 16px;
+    margin-top:20px;
 
-    color: #687384;
+    text-align:center;
 
-    font-size: 10px;
+    color:#5f6a79;
+
+    font-size:10px;
 }
 
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 450px) {
-
-    .card {
-        padding: 20px;
-    }
-
-    .logo h1 {
-        font-size: 34px;
-    }
-}
 </style>
 </head>
 
+
 <body>
 
-<div class="page">
 
-    <div>
+<div class="login-box">
 
-        <!-- LOGO -->
-        <div class="logo">
-            <h1>EL DORADO</h1>
-            <p>Thế giới phiêu lưu bắt đầu từ đây</p>
-        </div>
 
-        <div class="card">
+    <!-- LOGO -->
 
-            <!-- TAB -->
-            <div class="tabs">
+    <div class="logo">
 
-                <button
-                    class="tab active"
-                    id="loginTab"
-                    onclick="showForm('login')">
-                    Đăng nhập
-                </button>
+        <h1>EL DORADO</h1>
 
-                <button
-                    class="tab"
-                    id="registerTab"
-                    onclick="showForm('register')">
-                    Đăng ký
-                </button>
+        <p>
+            Thế giới phiêu lưu đang chờ bạn
+        </p>
 
-            </div>
+    </div>
 
-            <!-- THÔNG BÁO -->
-            <div
-                id="message"
-                class="message">
-            </div>
 
-            <!-- =====================
-                 ĐĂNG NHẬP
-            ====================== -->
+    <!-- TIÊU ĐỀ -->
 
-            <div
-                id="loginForm"
-                class="form active">
+    <div class="title">
 
-                <h2>Chào mừng trở lại!</h2>
+        <h2>Đăng nhập</h2>
 
-                <p class="form-desc">
-                    Đăng nhập để tiếp tục cuộc phiêu lưu.
-                </p>
+        <p>
+            Đăng nhập để tiếp tục
+        </p>
 
-                <div class="input-group">
+    </div>
 
-                    <label>
-                        Tài khoản
-                    </label>
 
-                    <input
-                        type="text"
-                        id="loginUsername"
-                        placeholder="Nhập tên tài khoản"
-                        autocomplete="username">
+    <!-- THÔNG BÁO -->
 
-                </div>
+    <div
+        id="message"
+        class="message">
+    </div>
 
-                <div class="input-group">
 
-                    <label>
-                        Mật khẩu
-                    </label>
+    <!-- TÀI KHOẢN -->
 
-                    <div class="password-wrap">
+    <div class="input-group">
 
-                        <input
-                            type="password"
-                            id="loginPassword"
-                            placeholder="Nhập mật khẩu"
-                            autocomplete="current-password">
+        <label>
+            Tài khoản
+        </label>
 
-                        <button
-                            class="eye"
-                            type="button"
-                            onclick="togglePassword('loginPassword', this)">
-                            👁
-                        </button>
+        <input
+            id="username"
+            type="text"
+            placeholder="Nhập tên tài khoản"
+            autocomplete="username">
 
-                    </div>
+    </div>
 
-                </div>
 
-                <div class="options">
+    <!-- MẬT KHẨU -->
 
-                    <label class="remember">
+    <div class="input-group">
 
-                        <input
-                            type="checkbox"
-                            id="rememberMe">
+        <label>
+            Mật khẩu
+        </label>
 
-                        Ghi nhớ
+        <div class="password">
 
-                    </label>
+            <input
+                id="password"
+                type="password"
+                placeholder="Nhập mật khẩu"
+                autocomplete="current-password">
 
-                    <button
-                        class="forgot"
-                        onclick="forgotPassword()">
-                        Quên mật khẩu?
-                    </button>
+            <button
+                class="eye"
+                type="button"
+                onclick="showPassword()">
 
-                </div>
+                👁
 
-                <button
-                    class="main-btn"
-                    onclick="login()">
-                    ĐĂNG NHẬP
-                </button>
+            </button>
 
-                <div class="divider">
-                    HOẶC
-                </div>
-
-                <button
-                    class="quick-btn"
-                    onclick="guestLogin()">
-                    🎮 Chơi thử
-                </button>
-
-            </div>
-
-            <!-- =====================
-                 ĐĂNG KÝ
-            ====================== -->
-
-            <div
-                id="registerForm"
-                class="form">
-
-                <h2>Tạo tài khoản</h2>
-
-                <p class="form-desc">
-                    Tạo tài khoản để bắt đầu hành trình.
-                </p>
-
-                <div class="input-group">
-
-                    <label>
-                        Tên tài khoản
-                    </label>
-
-                    <input
-                        type="text"
-                        id="registerUsername"
-                        placeholder="3-16 ký tự">
-
-                </div>
-
-                <div class="input-group">
-
-                    <label>
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="registerEmail"
-                        placeholder="example@email.com">
-
-                </div>
-
-                <div class="input-group">
-
-                    <label>
-                        Mật khẩu
-                    </label>
-
-                    <div class="password-wrap">
-
-                        <input
-                            type="password"
-                            id="registerPassword"
-                            placeholder="Ít nhất 6 ký tự">
-
-                        <button
-                            class="eye"
-                            type="button"
-                            onclick="togglePassword('registerPassword', this)">
-                            👁
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <div class="input-group">
-
-                    <label>
-                        Nhập lại mật khẩu
-                    </label>
-
-                    <div class="password-wrap">
-
-                        <input
-                            type="password"
-                            id="registerConfirm"
-                            placeholder="Nhập lại mật khẩu">
-
-                        <button
-                            class="eye"
-                            type="button"
-                            onclick="togglePassword('registerConfirm', this)">
-                            👁
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <button
-                    class="main-btn"
-                    onclick="register()">
-                    TẠO TÀI KHOẢN
-                </button>
-
-            </div>
-
-        </div>
-
-        <div class="footer">
-            © 2026 EL DORADO · Fantasy Adventure
         </div>
 
     </div>
 
+
+    <!-- GHI NHỚ -->
+
+    <label class="remember">
+
+        <input
+            id="remember"
+            type="checkbox">
+
+        Ghi nhớ tài khoản
+
+    </label>
+
+
+    <!-- NÚT -->
+
+    <button
+        class="login-btn"
+        onclick="login()">
+
+        ĐĂNG NHẬP
+
+    </button>
+
+
+    <div class="footer">
+
+        EL DORADO © 2026
+
+    </div>
+
+
 </div>
+
+
 
 <script>
 
 /* =========================
-   CHUYỂN ĐĂNG NHẬP / ĐĂNG KÝ
+   HIỆN MẬT KHẨU
 ========================= */
 
-function showForm(type) {
+function showPassword(){
 
-    const loginForm =
-        document.getElementById("loginForm");
+    const password =
+        document.getElementById(
+            "password"
+        );
 
-    const registerForm =
-        document.getElementById("registerForm");
+    const button =
+        document.querySelector(
+            ".eye"
+        );
 
-    const loginTab =
-        document.getElementById("loginTab");
 
-    const registerTab =
-        document.getElementById("registerTab");
+    if(
+        password.type ===
+        "password"
+    ){
 
-    clearMessage();
+        password.type =
+            "text";
 
-    if (type === "login") {
+        button.textContent =
+            "🙈";
 
-        loginForm.classList.add("active");
-        registerForm.classList.remove("active");
+    }else{
 
-        loginTab.classList.add("active");
-        registerTab.classList.remove("active");
+        password.type =
+            "password";
 
-    } else {
-
-        registerForm.classList.add("active");
-        loginForm.classList.remove("active");
-
-        registerTab.classList.add("active");
-        loginTab.classList.remove("active");
+        button.textContent =
+            "👁";
 
     }
+
 }
 
 
@@ -740,125 +547,61 @@ function showForm(type) {
    THÔNG BÁO
 ========================= */
 
-function showMessage(text, type) {
+function message(
+    text,
+    type
+){
 
     const box =
-        document.getElementById("message");
+        document.getElementById(
+            "message"
+        );
 
-    box.textContent = text;
-
-    box.className =
-        "message " + type;
-}
-
-function clearMessage() {
-
-    const box =
-        document.getElementById("message");
-
-    box.textContent = "";
+    box.textContent =
+        text;
 
     box.className =
-        "message";
+        "message show " +
+        type;
+
 }
 
 
 /* =========================
-   ẨN / HIỆN MẬT KHẨU
+   ĐĂNG NHẬP
 ========================= */
 
-function togglePassword(id, button) {
-
-    const input =
-        document.getElementById(id);
-
-    if (input.type === "password") {
-
-        input.type = "text";
-        button.textContent = "🙈";
-
-    } else {
-
-        input.type = "password";
-        button.textContent = "👁";
-
-    }
-}
-
-
-/* =========================
-   ĐĂNG KÝ DEMO
-========================= */
-
-function register() {
+function login(){
 
     const username =
-        document
-        .getElementById("registerUsername")
-        .value
-        .trim();
-
-    const email =
-        document
-        .getElementById("registerEmail")
+        document.getElementById(
+            "username"
+        )
         .value
         .trim();
 
     const password =
-        document
-        .getElementById("registerPassword")
-        .value;
-
-    const confirm =
-        document
-        .getElementById("registerConfirm")
+        document.getElementById(
+            "password"
+        )
         .value;
 
 
-    if (username.length < 3) {
+    if(!username){
 
-        showMessage(
-            "Tên tài khoản phải có ít nhất 3 ký tự.",
+        message(
+            "Vui lòng nhập tài khoản.",
             "error"
         );
 
         return;
     }
 
-    if (username.length > 16) {
 
-        showMessage(
-            "Tên tài khoản tối đa 16 ký tự.",
-            "error"
-        );
+    if(!password){
 
-        return;
-    }
-
-    if (!email.includes("@")) {
-
-        showMessage(
-            "Email chưa hợp lệ.",
-            "error"
-        );
-
-        return;
-    }
-
-    if (password.length < 6) {
-
-        showMessage(
-            "Mật khẩu phải có ít nhất 6 ký tự.",
-            "error"
-        );
-
-        return;
-    }
-
-    if (password !== confirm) {
-
-        showMessage(
-            "Hai mật khẩu không giống nhau.",
+        message(
+            "Vui lòng nhập mật khẩu.",
             "error"
         );
 
@@ -867,147 +610,18 @@ function register() {
 
 
     /*
-       PHẦN NÀY CHỈ LÀ DEMO.
+       HIỆN TẠI CHỈ LÀ
+       GIAO DIỆN ĐĂNG NHẬP.
 
-       Lưu tạm tài khoản trên điện thoại
-       bằng localStorage.
+       Chưa kết nối database.
     */
 
-    const user = {
 
-        username: username,
-        email: email,
-        password: password
-
-    };
-
-
-    localStorage.setItem(
-        "eldoradoUser",
-        JSON.stringify(user)
-    );
-
-
-    showMessage(
-        "Đăng ký thành công! Đang chuyển sang đăng nhập...",
+    message(
+        "Đăng nhập thành công!",
         "success"
     );
 
-
-    setTimeout(function() {
-
-        document.getElementById(
-            "loginUsername"
-        ).value = username;
-
-        document.getElementById(
-            "loginPassword"
-        ).value = "";
-
-        showForm("login");
-
-    }, 1000);
-}
-
-
-/* =========================
-   ĐĂNG NHẬP DEMO
-========================= */
-
-function login() {
-
-    const username =
-        document
-        .getElementById("loginUsername")
-        .value
-        .trim();
-
-    const password =
-        document
-        .getElementById("loginPassword")
-        .value;
-
-
-    const saved =
-        localStorage.getItem("eldoradoUser");
-
-
-    if (!saved) {
-
-        showMessage(
-            "Bạn chưa có tài khoản. Hãy đăng ký trước.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const user =
-        JSON.parse(saved);
-
-
-    if (
-        username !== user.username ||
-        password !== user.password
-    ) {
-
-        showMessage(
-            "Sai tài khoản hoặc mật khẩu.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    showMessage(
-        "Đăng nhập thành công! 🎉",
-        "success"
-    );
-
-
-    /*
-       Hiện tại chưa chuyển sang game.
-
-       Khi làm game.html, chúng ta sẽ đổi
-       dòng này thành:
-
-       window.location.href = "game.html";
-    */
-
-    setTimeout(function() {
-
-        alert(
-            "Đăng nhập thành công!\n\nBước tiếp theo sẽ là màn hình CHỌN NHÂN VẬT."
-        );
-
-    }, 500);
-}
-
-
-/* =========================
-   CHƠI THỬ
-========================= */
-
-function guestLogin() {
-
-    alert(
-        "Chế độ chơi thử đã được chọn.\n\n" +
-        "Bước tiếp theo sẽ vào màn hình chọn nhân vật."
-    );
-}
-
-
-/* =========================
-   QUÊN MẬT KHẨU
-========================= */
-
-function forgotPassword() {
-
-    alert(
-        "Chức năng đặt lại mật khẩu sẽ được kết nối với hệ thống tài khoản sau."
-    );
 }
 
 </script>
