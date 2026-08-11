@@ -2,183 +2,283 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>El Dorado - Huyền Thoại Thành Phố Vàng</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      user-select: none;
     }
 
     body {
-      background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), 
-                  radial-gradient(circle, #2c1d11 0%, #0a0603 100%);
-      color: #f1c40f;
-      min-height: 100vh;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #0b1320;
+    }
+
+    /* Khung cảnh nền núi rừng thiên nhiên */
+    .game-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Bạn có thể đổi đường dẫn 'bg.jpg' thành tên ảnh nền bạn tải lên GitHub */
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)),
+                  url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop') no-repeat center center/cover;
+      z-index: 1;
+      transition: filter 0.5s ease;
+    }
+
+    /* MÀN HÌNH CHỜ (START SCREEN) */
+    #start-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 15px;
+      transition: opacity 0.6s ease, visibility 0.6s;
     }
 
-    .container {
-      width: 100%;
-      max-width: 400px;
-      background: rgba(20, 15, 10, 0.9);
-      border: 2px solid #d4af37;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-      overflow: hidden;
-    }
-
-    .header {
-      text-align: center;
-      padding: 25px 15px 15px;
-    }
-
-    .header h1 {
-      font-size: 26px;
-      letter-spacing: 2px;
+    .game-title {
+      font-size: 38px;
+      font-weight: 900;
+      color: #ffe875;
       text-transform: uppercase;
-      text-shadow: 0 0 8px rgba(241, 196, 15, 0.6);
-      color: #f39c12;
+      letter-spacing: 4px;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 2px 4px 10px rgba(0, 0, 0, 0.9);
+      margin-bottom: 40px;
+      text-align: center;
     }
 
-    .tabs {
-      display: flex;
-      border-bottom: 1px solid #342210;
-    }
-
-    .tab-btn {
-      flex: 1;
-      padding: 12px;
-      background: none;
-      border: none;
-      color: #888;
+    /* Nút PLAY rực rỡ */
+    .btn-play {
+      padding: 18px 50px;
+      font-size: 22px;
       font-weight: bold;
-      font-size: 15px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .tab-btn.active {
-      color: #f1c40f;
-      border-bottom: 2px solid #f1c40f;
-      background: rgba(212, 175, 55, 0.1);
-    }
-
-    .form-container {
-      padding: 25px;
-    }
-
-    .form {
-      display: none;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .form.active {
-      display: flex;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 12px 15px;
-      background: #120c07;
-      border: 1px solid #5c4018;
-      border-radius: 6px;
       color: #fff;
-      font-size: 14px;
+      background: linear-gradient(135deg, #f39c12, #e67e22);
+      border: 3px solid #ffeb3b;
+      border-radius: 50px;
+      box-shadow: 0 0 20px rgba(243, 156, 18, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      animation: pulse 1.8s infinite;
       outline: none;
     }
 
-    .input-group input:focus {
-      border-color: #f1c40f;
-      box-shadow: 0 0 5px rgba(241, 196, 15, 0.4);
+    .btn-play:active {
+      transform: scale(0.95);
     }
 
-    .submit-btn {
-      padding: 12px;
-      background: linear-gradient(135deg, #f39c12, #d35400);
-      border: none;
-      border-radius: 6px;
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 15px rgba(243, 156, 18, 0.7); }
+      50% { transform: scale(1.06); box-shadow: 0 0 30px rgba(255, 215, 0, 1); }
+      100% { transform: scale(1); box-shadow: 0 0 15px rgba(243, 156, 18, 0.7); }
+    }
+
+    .sub-links {
+      margin-top: 25px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .sub-btn {
+      background: rgba(0, 0, 0, 0.5);
       color: #fff;
-      font-weight: bold;
-      font-size: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      backdrop-filter: blur(5px);
       cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 1px;
     }
 
-    .submit-btn:active {
-      transform: scale(0.98);
+    /* GIAO DIỆN GAME CHÍNH (GAME UI) */
+    #game-ui {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 15px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.6s ease, visibility 0.6s;
+    }
+
+    /* Thanh trạng thái nhân vật ở đỉnh màn hình */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      padding: 10px 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      color: #fff;
+    }
+
+    .player-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f1c40f;
+      border: 2px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .stats {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hp-bar {
+      width: 100px;
+      height: 8px;
+      background: #444;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .hp-fill {
+      width: 100%;
+      height: 100%;
+      background: #e74c3c;
+    }
+
+    .currency {
+      color: #ffd700;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    /* Khu vực trung tâm game */
+    .game-viewport {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+      font-size: 18px;
+    }
+
+    /* Bảng điều khiển nút bấm phía dưới (Mobile Controls) */
+    .bottom-controls {
+      display: flex;
+      justify-content: space-around;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .action-btn {
+      background: linear-gradient(180deg, #34495e, #2c3e50);
+      color: #fff;
+      border: 1px solid #5d6d7e;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .action-btn:active {
+      background: #f39c12;
+    }
+
+    /* Hiệu ứng ẩn màn hình */
+    .hidden {
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+
+    .visible {
+      opacity: 1 !important;
+      visibility: visible !important;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="header">
-      <h1>EL DORADO</h1>
+  <!-- Ảnh nền thiên nhiên -->
+  <div class="game-bg" id="bg"></div>
+
+  <!-- 1. MÀN HÌNH CHỜ (CÓ NÚT PLAY) -->
+  <div id="start-screen">
+    <h1 class="game-title">EL DORADO</h1>
+    <button class="btn-play" onclick="enterGame()">CHƠI NGAY</button>
+    <div class="sub-links">
+      <button class="sub-btn" onclick="alert('Tính năng Đăng nhập đang phát triển!')">Đăng Nhập</button>
+      <button class="sub-btn" onclick="alert('Game El Dorado v1.0')">Cài Đặt</button>
+    </div>
+  </div>
+
+  <!-- 2. GIAO DIỆN KHI VÀO GAME -->
+  <div id="game-ui">
+    <!-- Thanh chỉ số phía trên -->
+    <div class="top-bar">
+      <div class="player-info">
+        <div class="avatar">Hero</div>
+        <div class="stats">
+          <span style="font-size: 12px; font-weight: bold;">Cấp 1 - Hiệp Sĩ</span>
+          <div class="hp-bar"><div class="hp-fill"></div></div>
+        </div>
+      </div>
+      <div class="currency">🪙 1,000 Vàng</div>
     </div>
 
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('login')">Đăng Nhập</button>
-      <button class="tab-btn" onclick="switchTab('register')">Đăng Ký</button>
+    <!-- Màn hình chơi game chính -->
+    <div class="game-viewport">
+      <p style="background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 20px;">
+        🌲 Bạn đã bước vào thế giới El Dorado!
+      </p>
     </div>
 
-    <div class="form-container">
-      <!-- Form Đăng Nhập -->
-      <form id="login-form" class="form active" onsubmit="handleAuth(event, 'Đăng nhập')">
-        <div class="input-group">
-          <input type="text" placeholder="Tên tài khoản hoặc Email" required>
-        </div>
-        <div class="input-group">
-          <input type="password" placeholder="Mật khẩu" required>
-        </div>
-        <button type="submit" class="submit-btn">Vào Game</button>
-      </form>
-
-      <!-- Form Đăng Ký -->
-      <form id="register-form" class="form" onsubmit="handleAuth(event, 'Đăng ký')">
-        <div class="input-group">
-          <input type="text" placeholder="Tên nhân vật" required>
-        </div>
-        <div class="input-group">
-          <input type="email" placeholder="Địa chỉ Email" required>
-        </div>
-        <div class="input-group">
-          <input type="password" placeholder="Mật khẩu" required>
-        </div>
-        <button type="submit" class="submit-btn">Tạo Tài Khoản</button>
-      </form>
+    <!-- Nút thao tác nhanh phía dưới cho điện thoại -->
+    <div class="bottom-controls">
+      <button class="action-btn" onclick="alert('Đang khám phá rừng...')">⚔️ Thám Hiểm</button>
+      <button class="action-btn" onclick="alert('Mở túi đồ')">🎒 Túi Đồ</button>
+      <button class="action-btn" onclick="alert('Mở bản đồ')">🗺️ Bản Đồ</button>
     </div>
   </div>
 
   <script>
-    function switchTab(tab) {
-      const loginForm = document.getElementById('login-form');
-      const registerForm = document.getElementById('register-form');
-      const buttons = document.querySelectorAll('.tab-btn');
-
-      if (tab === 'login') {
-        loginForm.classList.add('active');
-        registerForm.classList.remove('active');
-        buttons[0].classList.add('active');
-        buttons[1].classList.remove('active');
-      } else {
-        registerForm.classList.add('active');
-        loginForm.classList.remove('active');
-        buttons[1].classList.add('active');
-        buttons[0].classList.remove('active');
-      }
-    }
-
-    function handleAuth(event, type) {
-      event.preventDefault();
-      alert(type + ' thành công! Đang chuyển hướng vào thành phố vàng...');
+    function enterGame() {
+      // Ẩn màn hình chờ
+      document.getElementById('start-screen').classList.add('hidden');
+      
+      // Hiện giao diện game
+      document.getElementById('game-ui').classList.add('visible');
     }
   </script>
 
