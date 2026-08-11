@@ -8,28 +8,23 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%; height: 100%;
-      background: #111;
+      overflow: hidden;
+      background: #000;
+    }
+    .game-screen {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
     }
-    /* 100vmin = 100% chiều nhỏ hơn, thay thế min() cho Chrome cũ */
-    .game-screen {
-      position: relative;
-      width: 100vmin;
-      height: 100vmin;
-      overflow: hidden;
-    }
-    /* Ảnh nền dùng thẻ img thay vì background-image, chắc hơn */
     .bg {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      min-width: 100%; min-height: 100%;
-      width: auto; height: auto;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
-    /* Nội dung game đè lên ảnh */
     .content {
       position: absolute;
       inset: 0;
