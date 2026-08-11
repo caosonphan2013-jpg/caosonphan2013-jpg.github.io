@@ -1,729 +1,1014 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Lập nhóm</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        body {
-            min-height: 100vh;
-            background:
-                linear-gradient(
-                    rgba(0, 0, 0, 0.45),
-                    rgba(0, 0, 0, 0.65)
-                ),
-                url("nennhom.jpg") center/cover fixed no-repeat;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: white;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 430px;
-        }
-
-        .box {
-            background: rgba(20, 20, 25, 0.88);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 22px;
-            padding: 28px;
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.08);
-
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .title {
-            text-align: center;
-            font-size: 30px;
-            font-weight: 800;
-            margin-bottom: 7px;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #aaa;
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
-
-        /* Ảnh nhóm */
-
-        .avatar-area {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 22px;
-        }
-
-        .avatar {
-            width: 105px;
-            height: 105px;
-            border-radius: 50%;
-            object-fit: cover;
-
-            border: 4px solid rgba(255, 255, 255, 0.8);
-
-            background: #292929;
-
-            cursor: pointer;
-
-            transition: 0.25s;
-        }
-
-        .avatar:hover {
-            transform: scale(1.05);
-            border-color: #6c8cff;
-        }
-
-        #avatarInput {
-            display: none;
-        }
-
-        .avatar-text {
-            text-align: center;
-            color: #aaa;
-            font-size: 12px;
-            margin-top: -12px;
-            margin-bottom: 20px;
-        }
-
-        /* Input */
-
-        .form-group {
-            margin-bottom: 17px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: bold;
-            color: #ddd;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            outline: none;
-
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-
-            border-radius: 12px;
-            padding: 14px;
-
-            font-size: 15px;
-
-            transition: 0.2s;
-        }
-
-        input:focus,
-        textarea:focus {
-            border-color: #7187ff;
-            background: rgba(255, 255, 255, 0.11);
-            box-shadow: 0 0 0 3px rgba(113, 135, 255, 0.12);
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: #888;
-        }
-
-        textarea {
-            height: 95px;
-            resize: none;
-        }
-
-        .counter {
-            text-align: right;
-            color: #777;
-            font-size: 11px;
-            margin-top: 5px;
-        }
-
-        /* Chế độ nhóm */
-
-        .mode-title {
-            margin-bottom: 10px;
-        }
-
-        .modes {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .mode {
-            position: relative;
-        }
-
-        .mode input {
-            display: none;
-        }
-
-        .mode label {
-            cursor: pointer;
-            text-align: center;
-            padding: 13px 8px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
-            transition: 0.2s;
-        }
-
-        .mode input:checked + label {
-            background: rgba(100, 120, 255, 0.22);
-            border-color: #7187ff;
-            color: white;
-        }
-
-        /* Nút */
-
-        .create-btn {
-            width: 100%;
-            margin-top: 8px;
-
-            border: none;
-            border-radius: 13px;
-
-            padding: 15px;
-
-            color: white;
-            font-size: 16px;
-            font-weight: 800;
-
-            cursor: pointer;
-
-            background: linear-gradient(
-                135deg,
-                #596cff,
-                #8b5cff
-            );
-
-            box-shadow: 0 8px 25px rgba(89, 108, 255, 0.3);
-
-            transition: 0.2s;
-        }
-
-        .create-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(89, 108, 255, 0.45);
-        }
-
-        .create-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Trang nhóm sau khi tạo */
-
-        .group-page {
-            display: none;
-            text-align: center;
-        }
-
-        .group-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid white;
-            margin-bottom: 15px;
-        }
-
-        .group-name {
-            font-size: 27px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-
-        .group-description {
-            color: #aaa;
-            font-size: 14px;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .info {
-            background: rgba(255,255,255,0.06);
-            padding: 14px;
-            border-radius: 13px;
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .info div {
-            padding: 5px 0;
-            color: #ccc;
-            font-size: 14px;
-        }
-
-        .back-btn {
-            width: 100%;
-            padding: 13px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.15);
-            background: rgba(255,255,255,0.07);
-            color: white;
-            cursor: pointer;
-        }
-
-        .back-btn:hover {
-            background: rgba(255,255,255,0.12);
-        }
-
-        /* Thông báo */
-
-        .message {
-            display: none;
-            background: rgba(255, 70, 70, 0.15);
-            border: 1px solid rgba(255, 70, 70, 0.35);
-            color: #ff9b9b;
-            padding: 11px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            font-size: 13px;
-        }
-
-        /* Mobile */
-
-        @media (max-width: 480px) {
-            body {
-                padding: 12px;
-            }
-
-            .box {
-                padding: 22px 18px;
-                border-radius: 18px;
-            }
-
-            .title {
-                font-size: 26px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>EL DORADO</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    font-family: Arial, sans-serif;
+    background: #05070b;
+    color: white;
+}
+
+/* =========================
+   NỀN
+========================= */
+
+body {
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(2, 7, 15, 0.45),
+            rgba(2, 7, 15, 0.72)
+        ),
+        url("nennhom.jpg") center center / cover no-repeat fixed;
+}
+
+/* =========================
+   TRUNG TÂM
+========================= */
+
+.page {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.logo h1 {
+    font-size: 42px;
+    font-weight: 900;
+
+    color: #ffd65a;
+
+    text-shadow:
+        0 3px 0 #7a4d00,
+        0 0 18px rgba(255, 205, 70, 0.45);
+
+    letter-spacing: 2px;
+}
+
+.logo p {
+    margin-top: 5px;
+
+    font-size: 13px;
+    color: #c6ccd7;
+}
+
+/* =========================
+   BOX
+========================= */
+
+.card {
+    width: min(92vw, 390px);
+
+    padding: 25px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            160deg,
+            rgba(18, 25, 38, 0.96),
+            rgba(7, 11, 18, 0.96)
+        );
+
+    border: 1px solid rgba(255, 214, 90, 0.30);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* =========================
+   TAB
+========================= */
+
+.tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 6px;
+
+    padding: 5px;
+
+    background: rgba(255,255,255,0.05);
+
+    border-radius: 13px;
+
+    margin-bottom: 20px;
+}
+
+.tab {
+    border: none;
+
+    padding: 12px 8px;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #8993a4;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.tab.active {
+    background:
+        linear-gradient(
+            135deg,
+            #a97008,
+            #ffd85b
+        );
+
+    color: #17120a;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form {
+    display: none;
+}
+
+.form.active {
+    display: block;
+}
+
+.form h2 {
+    margin-bottom: 7px;
+
+    font-size: 23px;
+}
+
+.form-desc {
+    color: #8e99aa;
+
+    font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 14px;
+}
+
+.input-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #cbd2dc;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border-radius: 11px;
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    outline: none;
+
+    background: rgba(255,255,255,0.06);
+
+    color: white;
+
+    font-size: 15px;
+
+    transition: 0.2s;
+}
+
+.input-group input:focus {
+    border-color: #e2af37;
+
+    background: rgba(255,255,255,0.09);
+
+    box-shadow:
+        0 0 0 3px rgba(226,175,55,0.10);
+}
+
+.input-group input::placeholder {
+    color: #687283;
+}
+
+/* =========================
+   PASSWORD
+========================= */
+
+.password-wrap {
+    position: relative;
+}
+
+.password-wrap input {
+    padding-right: 50px;
+}
+
+.eye {
+    position: absolute;
+
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    background: transparent;
+
+    color: #aab3c1;
+
+    font-size: 17px;
+
+    cursor: pointer;
+}
+
+/* =========================
+   OPTIONS
+========================= */
+
+.options {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin: 5px 0 17px;
+
+    font-size: 12px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: #a9b1bf;
+}
+
+.remember input {
+    accent-color: #e6b743;
+}
+
+.forgot {
+    color: #e7bb4a;
+
+    border: none;
+
+    background: none;
+
+    cursor: pointer;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.main-btn {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b57a0b,
+            #ffd65a
+        );
+
+    color: #17120a;
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(214,166,45,0.20);
+
+    transition: 0.2s;
+}
+
+.main-btn:active {
+    transform: scale(0.98);
+}
+
+/* =========================
+   ĐĂNG NHẬP NHANH
+========================= */
+
+.divider {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #667182;
+
+    font-size: 11px;
+
+    margin: 19px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: rgba(255,255,255,0.08);
+}
+
+.quick-btn {
+    width: 100%;
+
+    padding: 11px;
+
+    border-radius: 11px;
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    background: rgba(255,255,255,0.04);
+
+    color: white;
+
+    cursor: pointer;
+}
+
+.quick-btn:active {
+    background: rgba(255,255,255,0.08);
+}
+
+/* =========================
+   THÔNG BÁO
+========================= */
+
+.message {
+    display: none;
+
+    padding: 10px 12px;
+
+    margin-bottom: 14px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+.message.error {
+    display: block;
+
+    color: #ffb0b0;
+
+    border: 1px solid rgba(255,80,80,0.25);
+
+    background: rgba(255,80,80,0.10);
+}
+
+.message.success {
+    display: block;
+
+    color: #abefb5;
+
+    border: 1px solid rgba(90,220,110,0.25);
+
+    background: rgba(90,220,110,0.10);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    text-align: center;
+
+    margin-top: 16px;
+
+    color: #687384;
+
+    font-size: 10px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 450px) {
+
+    .card {
+        padding: 20px;
+    }
+
+    .logo h1 {
+        font-size: 34px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="page">
 
-    <!-- ========================= -->
-    <!-- FORM LẬP NHÓM -->
-    <!-- ========================= -->
+    <div>
 
-    <div class="box" id="createPage">
-
-        <h1 class="title">Tạo nhóm</h1>
-
-        <p class="subtitle">
-            Tạo nhóm của bạn và bắt đầu kết nối
-        </p>
-
-        <!-- Avatar -->
-
-        <div class="avatar-area">
-            <img
-                id="avatarPreview"
-                class="avatar"
-                src="nennhom.jpg"
-                alt="Ảnh nhóm"
-                onclick="document.getElementById('avatarInput').click()"
-            >
+        <!-- LOGO -->
+        <div class="logo">
+            <h1>EL DORADO</h1>
+            <p>Thế giới phiêu lưu bắt đầu từ đây</p>
         </div>
 
-        <p class="avatar-text">
-            Nhấn vào ảnh để chọn ảnh nhóm
-        </p>
+        <div class="card">
 
-        <input
-            type="file"
-            id="avatarInput"
-            accept="image/*"
-        >
+            <!-- TAB -->
+            <div class="tabs">
 
-        <!-- Thông báo -->
+                <button
+                    class="tab active"
+                    id="loginTab"
+                    onclick="showForm('login')">
+                    Đăng nhập
+                </button>
 
-        <div
-            class="message"
-            id="message"
-        ></div>
+                <button
+                    class="tab"
+                    id="registerTab"
+                    onclick="showForm('register')">
+                    Đăng ký
+                </button>
 
-        <!-- Tên nhóm -->
-
-        <div class="form-group">
-
-            <label for="groupName">
-                Tên nhóm
-            </label>
-
-            <input
-                type="text"
-                id="groupName"
-                maxlength="30"
-                placeholder="Nhập tên nhóm..."
-            >
-
-            <div class="counter">
-                <span id="nameCount">0</span>/30
             </div>
 
-        </div>
-
-        <!-- Mô tả -->
-
-        <div class="form-group">
-
-            <label for="description">
-                Mô tả nhóm
-            </label>
-
-            <textarea
-                id="description"
-                maxlength="150"
-                placeholder="Nhập mô tả nhóm..."
-            ></textarea>
-
-            <div class="counter">
-                <span id="descCount">0</span>/150
+            <!-- THÔNG BÁO -->
+            <div
+                id="message"
+                class="message">
             </div>
 
-        </div>
+            <!-- =====================
+                 ĐĂNG NHẬP
+            ====================== -->
 
-        <!-- Chế độ -->
+            <div
+                id="loginForm"
+                class="form active">
 
-        <div class="form-group">
+                <h2>Chào mừng trở lại!</h2>
 
-            <label class="mode-title">
-                Chế độ nhóm
-            </label>
+                <p class="form-desc">
+                    Đăng nhập để tiếp tục cuộc phiêu lưu.
+                </p>
 
-            <div class="modes">
+                <div class="input-group">
 
-                <div class="mode">
+                    <label>
+                        Tài khoản
+                    </label>
 
                     <input
-                        type="radio"
-                        name="mode"
-                        id="public"
-                        value="Công khai"
-                        checked
-                    >
-
-                    <label for="public">
-                        🌎 Công khai
-                    </label>
+                        type="text"
+                        id="loginUsername"
+                        placeholder="Nhập tên tài khoản"
+                        autocomplete="username">
 
                 </div>
 
-                <div class="mode">
+                <div class="input-group">
 
-                    <input
-                        type="radio"
-                        name="mode"
-                        id="private"
-                        value="Riêng tư"
-                    >
-
-                    <label for="private">
-                        🔒 Riêng tư
+                    <label>
+                        Mật khẩu
                     </label>
+
+                    <div class="password-wrap">
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Nhập mật khẩu"
+                            autocomplete="current-password">
+
+                        <button
+                            class="eye"
+                            type="button"
+                            onclick="togglePassword('loginPassword', this)">
+                            👁
+                        </button>
+
+                    </div>
 
                 </div>
 
+                <div class="options">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe">
+
+                        Ghi nhớ
+
+                    </label>
+
+                    <button
+                        class="forgot"
+                        onclick="forgotPassword()">
+                        Quên mật khẩu?
+                    </button>
+
+                </div>
+
+                <button
+                    class="main-btn"
+                    onclick="login()">
+                    ĐĂNG NHẬP
+                </button>
+
+                <div class="divider">
+                    HOẶC
+                </div>
+
+                <button
+                    class="quick-btn"
+                    onclick="guestLogin()">
+                    🎮 Chơi thử
+                </button>
+
+            </div>
+
+            <!-- =====================
+                 ĐĂNG KÝ
+            ====================== -->
+
+            <div
+                id="registerForm"
+                class="form">
+
+                <h2>Tạo tài khoản</h2>
+
+                <p class="form-desc">
+                    Tạo tài khoản để bắt đầu hành trình.
+                </p>
+
+                <div class="input-group">
+
+                    <label>
+                        Tên tài khoản
+                    </label>
+
+                    <input
+                        type="text"
+                        id="registerUsername"
+                        placeholder="3-16 ký tự">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="example@email.com">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+                        Mật khẩu
+                    </label>
+
+                    <div class="password-wrap">
+
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            placeholder="Ít nhất 6 ký tự">
+
+                        <button
+                            class="eye"
+                            type="button"
+                            onclick="togglePassword('registerPassword', this)">
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+                        Nhập lại mật khẩu
+                    </label>
+
+                    <div class="password-wrap">
+
+                        <input
+                            type="password"
+                            id="registerConfirm"
+                            placeholder="Nhập lại mật khẩu">
+
+                        <button
+                            class="eye"
+                            type="button"
+                            onclick="togglePassword('registerConfirm', this)">
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <button
+                    class="main-btn"
+                    onclick="register()">
+                    TẠO TÀI KHOẢN
+                </button>
+
             </div>
 
         </div>
 
-        <!-- Button -->
-
-        <button
-            class="create-btn"
-            onclick="createGroup()"
-        >
-            ✨ TẠO NHÓM
-        </button>
-
-    </div>
-
-
-    <!-- ========================= -->
-    <!-- TRANG NHÓM -->
-    <!-- ========================= -->
-
-    <div
-        class="box group-page"
-        id="groupPage"
-    >
-
-        <img
-            id="groupAvatar"
-            class="group-avatar"
-            src="nennhom.jpg"
-            alt="Avatar nhóm"
-        >
-
-        <h1
-            class="group-name"
-            id="resultName"
-        >
-            Tên nhóm
-        </h1>
-
-        <p
-            class="group-description"
-            id="resultDescription"
-        >
-            Mô tả nhóm
-        </p>
-
-        <div class="info">
-
-            <div>
-                👑 Chủ nhóm:
-                <b>Bạn</b>
-            </div>
-
-            <div>
-                👥 Thành viên:
-                <b>1</b>
-            </div>
-
-            <div>
-                🌎 Chế độ:
-                <b id="resultMode">
-                    Công khai
-                </b>
-            </div>
-
-            <div>
-                🟢 Trạng thái:
-                <b>Đang hoạt động</b>
-            </div>
-
+        <div class="footer">
+            © 2026 EL DORADO · Fantasy Adventure
         </div>
-
-        <button
-            class="back-btn"
-            onclick="backToCreate()"
-        >
-            ← Tạo nhóm khác
-        </button>
 
     </div>
 
 </div>
 
-
 <script>
 
-    /* =========================
-       CHỌN ẢNH NHÓM
-    ========================= */
+/* =========================
+   CHUYỂN ĐĂNG NHẬP / ĐĂNG KÝ
+========================= */
 
-    const avatarInput =
-        document.getElementById("avatarInput");
+function showForm(type) {
 
-    const avatarPreview =
-        document.getElementById("avatarPreview");
+    const loginForm =
+        document.getElementById("loginForm");
 
-    const groupAvatar =
-        document.getElementById("groupAvatar");
+    const registerForm =
+        document.getElementById("registerForm");
 
+    const loginTab =
+        document.getElementById("loginTab");
 
-    avatarInput.addEventListener(
-        "change",
-        function () {
+    const registerTab =
+        document.getElementById("registerTab");
 
-            const file = this.files[0];
+    clearMessage();
 
-            if (!file) return;
+    if (type === "login") {
 
-            if (!file.type.startsWith("image/")) {
+        loginForm.classList.add("active");
+        registerForm.classList.remove("active");
 
-                showMessage(
-                    "Vui lòng chọn một file ảnh!"
-                );
+        loginTab.classList.add("active");
+        registerTab.classList.remove("active");
 
-                return;
-            }
+    } else {
 
-            const reader =
-                new FileReader();
+        registerForm.classList.add("active");
+        loginForm.classList.remove("active");
 
-            reader.onload = function (event) {
+        registerTab.classList.add("active");
+        loginTab.classList.remove("active");
 
-                avatarPreview.src =
-                    event.target.result;
-
-                groupAvatar.src =
-                    event.target.result;
-
-            };
-
-            reader.readAsDataURL(file);
-        }
-    );
+    }
+}
 
 
-    /* =========================
-       ĐẾM KÝ TỰ
-    ========================= */
+/* =========================
+   THÔNG BÁO
+========================= */
 
-    const groupName =
-        document.getElementById("groupName");
+function showMessage(text, type) {
 
-    const description =
-        document.getElementById("description");
+    const box =
+        document.getElementById("message");
 
-    const nameCount =
-        document.getElementById("nameCount");
+    box.textContent = text;
 
-    const descCount =
-        document.getElementById("descCount");
+    box.className =
+        "message " + type;
+}
 
+function clearMessage() {
 
-    groupName.addEventListener(
-        "input",
-        function () {
+    const box =
+        document.getElementById("message");
 
-            nameCount.textContent =
-                this.value.length;
+    box.textContent = "";
 
-        }
-    );
-
-
-    description.addEventListener(
-        "input",
-        function () {
-
-            descCount.textContent =
-                this.value.length;
-
-        }
-    );
+    box.className =
+        "message";
+}
 
 
-    /* =========================
-       HIỆN THÔNG BÁO
-    ========================= */
+/* =========================
+   ẨN / HIỆN MẬT KHẨU
+========================= */
 
-    function showMessage(text) {
+function togglePassword(id, button) {
 
-        const message =
-            document.getElementById("message");
+    const input =
+        document.getElementById(id);
 
-        message.textContent = text;
+    if (input.type === "password") {
 
-        message.style.display = "block";
+        input.type = "text";
+        button.textContent = "🙈";
 
+    } else {
+
+        input.type = "password";
+        button.textContent = "👁";
+
+    }
+}
+
+
+/* =========================
+   ĐĂNG KÝ DEMO
+========================= */
+
+function register() {
+
+    const username =
+        document
+        .getElementById("registerUsername")
+        .value
+        .trim();
+
+    const email =
+        document
+        .getElementById("registerEmail")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("registerPassword")
+        .value;
+
+    const confirm =
+        document
+        .getElementById("registerConfirm")
+        .value;
+
+
+    if (username.length < 3) {
+
+        showMessage(
+            "Tên tài khoản phải có ít nhất 3 ký tự.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (username.length > 16) {
+
+        showMessage(
+            "Tên tài khoản tối đa 16 ký tự.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (!email.includes("@")) {
+
+        showMessage(
+            "Email chưa hợp lệ.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (password.length < 6) {
+
+        showMessage(
+            "Mật khẩu phải có ít nhất 6 ký tự.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (password !== confirm) {
+
+        showMessage(
+            "Hai mật khẩu không giống nhau.",
+            "error"
+        );
+
+        return;
     }
 
 
-    /* =========================
-       TẠO NHÓM
-    ========================= */
+    /*
+       PHẦN NÀY CHỈ LÀ DEMO.
 
-    function createGroup() {
+       Lưu tạm tài khoản trên điện thoại
+       bằng localStorage.
+    */
 
-        const name =
-            groupName.value.trim();
+    const user = {
 
-        const desc =
-            description.value.trim();
+        username: username,
+        email: email,
+        password: password
 
-        const mode =
-            document.querySelector(
-                'input[name="mode"]:checked'
-            ).value;
+    };
 
 
-        /* Kiểm tra tên */
-
-        if (name.length < 2) {
-
-            showMessage(
-                "Tên nhóm phải có ít nhất 2 ký tự!"
-            );
-
-            groupName.focus();
-
-            return;
-        }
+    localStorage.setItem(
+        "eldoradoUser",
+        JSON.stringify(user)
+    );
 
 
-        /* Ẩn thông báo */
+    showMessage(
+        "Đăng ký thành công! Đang chuyển sang đăng nhập...",
+        "success"
+    );
+
+
+    setTimeout(function() {
 
         document.getElementById(
-            "message"
-        ).style.display = "none";
-
-
-        /* Hiển thị dữ liệu */
+            "loginUsername"
+        ).value = username;
 
         document.getElementById(
-            "resultName"
-        ).textContent = name;
+            "loginPassword"
+        ).value = "";
+
+        showForm("login");
+
+    }, 1000);
+}
 
 
-        document.getElementById(
-            "resultDescription"
-        ).textContent =
-            desc || "Chưa có mô tả";
+/* =========================
+   ĐĂNG NHẬP DEMO
+========================= */
+
+function login() {
+
+    const username =
+        document
+        .getElementById("loginUsername")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("loginPassword")
+        .value;
 
 
-        document.getElementById(
-            "resultMode"
-        ).textContent = mode;
+    const saved =
+        localStorage.getItem("eldoradoUser");
 
 
-        /* Chuyển trang */
+    if (!saved) {
 
-        document.getElementById(
-            "createPage"
-        ).style.display = "none";
+        showMessage(
+            "Bạn chưa có tài khoản. Hãy đăng ký trước.",
+            "error"
+        );
 
-
-        document.getElementById(
-            "groupPage"
-        ).style.display = "block";
-
+        return;
     }
 
 
-    /* =========================
-       QUAY LẠI
-    ========================= */
-
-    function backToCreate() {
-
-        document.getElementById(
-            "groupPage"
-        ).style.display = "none";
+    const user =
+        JSON.parse(saved);
 
 
-        document.getElementById(
-            "createPage"
-        ).style.display = "block";
+    if (
+        username !== user.username ||
+        password !== user.password
+    ) {
 
+        showMessage(
+            "Sai tài khoản hoặc mật khẩu.",
+            "error"
+        );
+
+        return;
     }
+
+
+    showMessage(
+        "Đăng nhập thành công! 🎉",
+        "success"
+    );
+
+
+    /*
+       Hiện tại chưa chuyển sang game.
+
+       Khi làm game.html, chúng ta sẽ đổi
+       dòng này thành:
+
+       window.location.href = "game.html";
+    */
+
+    setTimeout(function() {
+
+        alert(
+            "Đăng nhập thành công!\n\nBước tiếp theo sẽ là màn hình CHỌN NHÂN VẬT."
+        );
+
+    }, 500);
+}
+
+
+/* =========================
+   CHƠI THỬ
+========================= */
+
+function guestLogin() {
+
+    alert(
+        "Chế độ chơi thử đã được chọn.\n\n" +
+        "Bước tiếp theo sẽ vào màn hình chọn nhân vật."
+    );
+}
+
+
+/* =========================
+   QUÊN MẬT KHẨU
+========================= */
+
+function forgotPassword() {
+
+    alert(
+        "Chức năng đặt lại mật khẩu sẽ được kết nối với hệ thống tài khoản sau."
+    );
+}
 
 </script>
 
