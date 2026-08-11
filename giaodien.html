@@ -9,53 +9,54 @@
     html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
 
     #screen {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
     }
     
     #bg {
-      width: 100%; height: 100%;
-      object-fit: cover;
+      width: 100%; 
+      height: 100%;
+      /* Đã bỏ lệnh object-fit để ảnh và nút luôn khớp tỷ lệ với nhau */
       display: block;
     }
 
-    /* VÙNG BẤM TÀNG HÌNH: LẬP NHÓM (Icon số 1) */
+    /* VÙNG BẤM: LẬP NHÓM (Icon số 1) */
     .nut-lap-nhom {
       position: absolute;
-      bottom: 2%;
-      left: 2%;
-      width: 8%; 
-      height: 16%;
+      bottom: 2%; /* Căn từ dưới lên */
+      left: 2%;   /* Căn từ trái sang */
+      width: 9%;  /* Độ rộng của nút */
+      height: 18%; /* Chiều cao của nút */
       display: block;
-      z-index: 10;
+      z-index: 9999;
       -webkit-tap-highlight-color: transparent;
       
-      /* Xóa 2 dấu gạch chéo ở dòng dưới nếu muốn hiện viền đỏ để căn chỉnh */
-      /* border: 2px solid red; background: rgba(255,0,0,0.3); */
+      /* Đang bật màu đỏ để bạn dễ nhìn. Khi nào khớp rồi thì xóa 2 dòng dưới đi */
+      background: rgba(255, 0, 0, 0.5); 
+      border: 2px solid yellow;
     }
 
-    /* VÙNG BẤM TÀNG HÌNH: DRAW (Icon số 3) */
+    /* VÙNG BẤM: DRAW (Icon số 3) */
     .nut-draw {
       position: absolute;
-      bottom: 2%;
-      left: 18.5%; 
-      width: 8%; 
-      height: 16%;
+      bottom: 2%;   /* Căn từ dưới lên */
+      left: 19.5%;  /* Căn từ trái sang */
+      width: 9%;    /* Độ rộng của nút */
+      height: 18%;  /* Chiều cao của nút */
       display: block;
-      z-index: 10;
+      z-index: 9999;
       -webkit-tap-highlight-color: transparent;
 
-      /* Xóa 2 dấu gạch chéo ở dòng dưới nếu muốn hiện viền đỏ để căn chỉnh */
-      /* border: 2px solid red; background: rgba(255,0,0,0.3); */
+      /* Đang bật màu đỏ để bạn dễ nhìn. Khi nào khớp rồi thì xóa 2 dòng dưới đi */
+      background: rgba(255, 0, 0, 0.5);
+      border: 2px solid yellow;
     }
   </style>
 </head>
 <body>
 
 <div id="screen">
-  <!-- Dùng đúng tên ảnh bạn vừa gửi -->
   <img id="bg" src="nengame_2.png">
 
   <!-- Nút bấm sang trang Lập Nhóm -->
