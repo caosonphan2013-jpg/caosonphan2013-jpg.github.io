@@ -3,74 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Giao Diện Chính - El Dorado</title>
+  <title>El Dorado - Giao Diện Chính</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { width: 100%; height: 100%; overflow: hidden; background: #1a1a2e; font-family: sans-serif; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
 
-    #screen {
-      position: fixed;
-      top: 0; left: 0;
+    .game-container {
+      position: relative;
       width: 100vw;
       height: 100vh;
     }
 
-    #bg {
+    .bg-img {
       width: 100%;
       height: 100%;
       object-fit: fill;
       display: block;
-      color: #fff;
     }
 
-    /* Nút Lập Nhóm nổi bật */
-    .nut-lap-nhom {
+    /* Vùng bấm: Lập Nhóm (Icon số 1) */
+    .btn-lap-nhom {
       position: absolute;
-      bottom: 3%;
-      left: 1%;
-      width: 10%;
-      height: 18%;
-      z-index: 9999;
-      background: rgba(255, 0, 0, 0.7);
-      border: 2px solid #ffd700;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 11px;
-      font-weight: bold;
-      text-decoration: none;
+      bottom: 2%;
+      left: 1.5%;
+      width: 8.5%;
+      height: 16%;
+      z-index: 99;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* Nút Draw nổi bật */
-    .nut-draw {
+    /* Vùng bấm: Draw (Icon số 3) */
+    .btn-draw {
       position: absolute;
-      bottom: 3%;
-      left: 17%;
-      width: 10%;
-      height: 18%;
-      z-index: 9999;
-      background: rgba(0, 150, 255, 0.7);
-      border: 2px solid #ffd700;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 11px;
-      font-weight: bold;
-      text-decoration: none;
+      bottom: 2%;
+      left: 18.5%;
+      width: 8.5%;
+      height: 16%;
+      z-index: 99;
+      -webkit-tap-highlight-color: transparent;
     }
   </style>
 </head>
 <body>
 
-<div id="screen">
-  <img id="bg" src="nengame_2.png" alt="CẢNH BÁO: Chưa tìm thấy file nengame_2.png trên GitHub!">
+<div class="game-container">
+  <!-- Tên file ảnh chuẩn xác -->
+  <img class="bg-img" src="nengame.png" alt="Giao diện game">
 
-  <a href="lap-nhom.html" class="nut-lap-nhom">NHÓM</a>
-  <a href="draw.html" class="nut-draw">DRAW</a>
+  <a href="lap-nhom.html" class="btn-lap-nhom"></a>
+  <a href="draw.html" class="btn-draw"></a>
 </div>
 
 </body>
