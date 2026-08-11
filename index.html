@@ -3,53 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>El Dorado Diagnostic</title>
+  <title>El Dorado</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { height: 100%; width: 100%; overflow: hidden; background-color: #000; color: #fff; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    /* Vùng hiển thị ảnh nền - Chẩn đoán */
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background-color: #000;
+    }
+
     .game-background {
       height: 100%;
       width: 100%;
-      
-      /* --- CHỖ QUAN TRỌNG: Hãy đảm bảo tên này là nengame.jpg --- */
-      background-image: url('nengame.jpg'); 
-      /* ----------------------------------------------------------- */
-
+      background-image: url('nengame.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
-
-    /* Bảng thông báo chẩn đoán */
-    #diagnostic-box {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.85);
-      border: 4px solid #ffeb3b;
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(255, 235, 59, 0.5);
-      z-index: 1000;
-      color: #ffe875;
-      font-family: 'Segoe UI', sans-serif;
-      font-size: 18px;
-    }
-    #diagnostic-box strong { font-size: 24px; color: #f39c12; }
   </style>
 </head>
 <body>
-
-  <!-- Bảng thông báo sẽ hiện nếu bạn đã cập nhật HTML -->
-  <div id="diagnostic-box">
-    <strong>[CHẾ ĐỘ CHẨN ĐOÁN]</strong><br><br>
-    Nếu bạn thấy thông báo này, file HTML ĐÃ được cập nhật xong.<br><br>
-    Nếu ảnh vẫn không hiện, hãy tập trung kiểm tra chính xác tên file ảnh của bạn.
-  </div>
 
   <div class="game-background"></div>
 
