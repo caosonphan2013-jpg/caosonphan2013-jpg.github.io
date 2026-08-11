@@ -14,18 +14,13 @@
 
 <style>
 
-/* =====================================================
-   RESET
-===================================================== */
-
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-html,
-body{
+html,body{
     width:100%;
     min-height:100%;
 }
@@ -35,47 +30,28 @@ body{
     min-height:100vh;
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
 
     padding:20px;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 
     color:white;
 
     background:
-
         linear-gradient(
             rgba(0,0,0,0.35),
-            rgba(0,0,0,0.72)
+            rgba(0,0,0,0.75)
         ),
-
         url("nennhom.jpg")
-
-        center center /
-
-        cover
-
-        no-repeat
-
-        fixed;
+        center/cover
+        no-repeat fixed;
 }
-
-
-/* =====================================================
-   LOGIN BOX
-===================================================== */
 
 .login-box{
 
     width:100%;
-
     max-width:390px;
 
     padding:28px 24px;
@@ -85,46 +61,28 @@ body{
     background:
         linear-gradient(
             160deg,
-            rgba(13,22,36,0.95),
-            rgba(5,10,18,0.95)
+            rgba(13,22,36,0.96),
+            rgba(5,10,18,0.96)
         );
 
-    border:
-        1px solid
+    border:1px solid
         rgba(255,215,100,0.35);
 
     box-shadow:
+        0 25px 70px rgba(0,0,0,0.65);
 
-        0 25px 70px
-        rgba(0,0,0,0.65),
-
-        inset
-        0 1px 0
-        rgba(255,255,255,0.05);
-
-    backdrop-filter:
-        blur(10px);
-
-    -webkit-backdrop-filter:
-        blur(10px);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
 }
 
-
-/* =====================================================
-   LOGO
-===================================================== */
-
 .logo{
-
     text-align:center;
-
-    margin-bottom:27px;
+    margin-bottom:28px;
 }
 
 .logo h1{
 
     font-size:39px;
-
     font-weight:900;
 
     letter-spacing:2px;
@@ -132,73 +90,47 @@ body{
     color:#ffd65a;
 
     text-shadow:
-
-        0 3px 0
-        #704500,
-
-        0 0 20px
-        rgba(255,210,70,0.55);
+        0 3px 0 #704500,
+        0 0 20px rgba(255,210,70,0.55);
 }
 
 .logo p{
 
     margin-top:7px;
-
     color:#aeb7c5;
-
     font-size:13px;
 }
 
-
-/* =====================================================
-   TITLE
-===================================================== */
-
 .title{
-
     text-align:center;
-
     margin-bottom:21px;
 }
 
 .title h2{
-
     font-size:23px;
-
     margin-bottom:6px;
 }
 
 .title p{
-
     color:#8994a5;
-
     font-size:13px;
 }
-
-
-/* =====================================================
-   MESSAGE
-===================================================== */
 
 .message{
 
     display:none;
 
     padding:11px 12px;
-
     margin-bottom:15px;
 
     border-radius:10px;
 
     font-size:13px;
 
-    line-height:1.4;
-
     text-align:center;
 }
 
 .message.show{
-
     display:block;
 }
 
@@ -206,11 +138,9 @@ body{
 
     color:#ffb3b3;
 
-    background:
-        rgba(255,70,70,0.10);
+    background:rgba(255,70,70,0.10);
 
-    border:
-        1px solid
+    border:1px solid
         rgba(255,70,70,0.25);
 }
 
@@ -218,21 +148,13 @@ body{
 
     color:#adf0b7;
 
-    background:
-        rgba(70,220,100,0.10);
+    background:rgba(70,220,100,0.10);
 
-    border:
-        1px solid
+    border:1px solid
         rgba(70,220,100,0.25);
 }
 
-
-/* =====================================================
-   INPUT GROUP
-===================================================== */
-
 .input-group{
-
     margin-bottom:16px;
 }
 
@@ -255,13 +177,11 @@ body{
 
     height:49px;
 
-    padding:
-        0 14px;
+    padding:0 14px;
 
     border-radius:11px;
 
-    border:
-        1px solid
+    border:1px solid
         rgba(255,255,255,0.12);
 
     outline:none;
@@ -272,15 +192,9 @@ body{
     color:white;
 
     font-size:15px;
-
-    transition:
-        border-color 0.2s,
-        background 0.2s,
-        box-shadow 0.2s;
 }
 
 .input-group input::placeholder{
-
     color:#667184;
 }
 
@@ -290,24 +204,13 @@ body{
 
     background:
         rgba(255,255,255,0.09);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(226,178,63,0.10);
 }
 
-
-/* =====================================================
-   PASSWORD
-===================================================== */
-
 .password-box{
-
     position:relative;
 }
 
 .password-box input{
-
     padding-right:52px;
 }
 
@@ -316,15 +219,12 @@ body{
     position:absolute;
 
     right:5px;
-
     top:5px;
 
     width:39px;
-
     height:39px;
 
     border:none;
-
     background:transparent;
 
     color:#aab3c1;
@@ -334,22 +234,15 @@ body{
     cursor:pointer;
 }
 
-
-/* =====================================================
-   REMEMBER
-===================================================== */
-
 .remember{
 
     display:flex;
-
     align-items:center;
 
     gap:7px;
 
     margin:
-        6px 0
-        18px;
+        6px 0 18px;
 
     color:#9ea8b8;
 
@@ -357,18 +250,8 @@ body{
 }
 
 .remember input{
-
-    width:15px;
-
-    height:15px;
-
     accent-color:#e5b33e;
 }
-
-
-/* =====================================================
-   LOGIN BUTTON
-===================================================== */
 
 .login-button{
 
@@ -381,7 +264,6 @@ body{
     border-radius:12px;
 
     background:
-
         linear-gradient(
             135deg,
             #b77808,
@@ -394,54 +276,8 @@ body{
 
     font-weight:900;
 
-    letter-spacing:0.3px;
-
     cursor:pointer;
-
-    box-shadow:
-
-        0 10px 28px
-        rgba(220,170,45,0.25);
-
-    transition:
-        transform 0.12s,
-        filter 0.12s;
 }
-
-.login-button:active{
-
-    transform:scale(0.98);
-
-    filter:brightness(0.92);
-}
-
-
-/* =====================================================
-   LOADING
-===================================================== */
-
-.loading{
-
-    display:none;
-
-    margin-top:13px;
-
-    text-align:center;
-
-    color:#cfd5df;
-
-    font-size:12px;
-}
-
-.loading.show{
-
-    display:block;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
 
 .footer{
 
@@ -454,79 +290,17 @@ body{
     font-size:10px;
 }
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(
-    max-width:450px
-){
-
-    body{
-
-        padding:12px;
-    }
-
-    .login-box{
-
-        padding:
-            22px 18px;
-
-        border-radius:19px;
-    }
-
-    .logo h1{
-
-        font-size:34px;
-    }
-
-}
-
-
-/* =====================================================
-   SMALL HEIGHT
-===================================================== */
-
-@media(
-    max-height:650px
-){
-
-    body{
-
-        align-items:flex-start;
-
-        padding-top:15px;
-
-        padding-bottom:15px;
-
-        overflow:auto;
-    }
-
-}
-
 </style>
 
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-     LOGIN
-===================================================== -->
 
 <div class="login-box">
 
-
-    <!-- LOGO -->
-
     <div class="logo">
 
-        <h1>
-            EL DORADO
-        </h1>
+        <h1>EL DORADO</h1>
 
         <p>
             Thế giới phiêu lưu đang chờ bạn
@@ -534,14 +308,9 @@ body{
 
     </div>
 
-
-    <!-- TITLE -->
-
     <div class="title">
 
-        <h2>
-            Đăng nhập
-        </h2>
+        <h2>Đăng nhập</h2>
 
         <p>
             Nhập tài khoản để bắt đầu
@@ -549,48 +318,32 @@ body{
 
     </div>
 
-
-    <!-- MESSAGE -->
-
     <div
         id="message"
         class="message">
-
     </div>
-
-
-    <!-- USERNAME -->
 
     <div class="input-group">
 
-        <label>
-            Tài khoản
-        </label>
+        <label>Tài khoản</label>
 
         <input
             id="username"
             type="text"
-            placeholder="Nhập tên tài khoản"
-            autocomplete="username">
+            placeholder="Nhập tên tài khoản">
 
     </div>
 
-
-    <!-- PASSWORD -->
-
     <div class="input-group">
 
-        <label>
-            Mật khẩu
-        </label>
+        <label>Mật khẩu</label>
 
         <div class="password-box">
 
             <input
                 id="password"
                 type="password"
-                placeholder="Nhập mật khẩu"
-                autocomplete="current-password">
+                placeholder="Nhập mật khẩu">
 
             <button
                 type="button"
@@ -605,9 +358,6 @@ body{
 
     </div>
 
-
-    <!-- REMEMBER -->
-
     <label class="remember">
 
         <input
@@ -618,9 +368,6 @@ body{
 
     </label>
 
-
-    <!-- LOGIN -->
-
     <button
         class="login-button"
         onclick="login()">
@@ -629,129 +376,62 @@ body{
 
     </button>
 
-
-    <!-- LOADING -->
-
-    <div
-        id="loading"
-        class="loading">
-
-        Đang vào El Dorado...
-
-    </div>
-
-
-    <!-- FOOTER -->
-
     <div class="footer">
-
         EL DORADO © 2026
-
     </div>
-
 
 </div>
 
 
-
 <script>
 
-/* =====================================================
-   HỖ TRỢ HIỆN THÔNG BÁO
-===================================================== */
+function showMessage(text,type){
 
-function showMessage(
-    text,
-    type
-){
+    const box =
+        document.getElementById("message");
 
-    const message =
-        document.getElementById(
-            "message"
-        );
+    box.textContent = text;
 
-
-    message.textContent =
-        text;
-
-
-    message.className =
-        "message show " +
-        type;
+    box.className =
+        "message show " + type;
 }
 
-
-/* =====================================================
-   HIỆN / ẨN MẬT KHẨU
-===================================================== */
 
 function togglePassword(){
 
     const password =
-        document.getElementById(
-            "password"
-        );
+        document.getElementById("password");
 
     const button =
-        document.querySelector(
-            ".password-button"
-        );
+        document.querySelector(".password-button");
 
+    if(password.type === "password"){
 
-    if(
-        password.type ===
-        "password"
-    ){
+        password.type = "text";
+        button.textContent = "🙈";
 
-        password.type =
-            "text";
+    }else{
 
-        button.textContent =
-            "🙈";
+        password.type = "password";
+        button.textContent = "👁";
 
     }
-
-    else{
-
-        password.type =
-            "password";
-
-        button.textContent =
-            "👁";
-
-    }
-
 }
 
-
-/* =====================================================
-   ĐĂNG NHẬP
-===================================================== */
 
 function login(){
 
     const username =
-        document
-            .getElementById(
-                "username"
-            )
-            .value
-            .trim();
-
+        document.getElementById("username")
+        .value
+        .trim();
 
     const password =
-        document
-            .getElementById(
-                "password"
-            )
-            .value;
+        document.getElementById("password")
+        .value;
 
 
-    /* Kiểm tra tài khoản */
-
-    if(
-        username.length === 0
-    ){
+    if(username === ""){
 
         showMessage(
             "Vui lòng nhập tài khoản.",
@@ -762,11 +442,7 @@ function login(){
     }
 
 
-    /* Kiểm tra mật khẩu */
-
-    if(
-        password.length === 0
-    ){
+    if(password === ""){
 
         showMessage(
             "Vui lòng nhập mật khẩu.",
@@ -777,11 +453,7 @@ function login(){
     }
 
 
-    /*
-       Lưu tên người chơi.
-       Sau này giaodien.html
-       có thể lấy tên này.
-    */
+    /* Lưu tên người chơi */
 
     localStorage.setItem(
         "eldoradoPlayerName",
@@ -789,143 +461,31 @@ function login(){
     );
 
 
-    /*
-       Lưu trạng thái đăng nhập.
-    */
-
     localStorage.setItem(
         "eldoradoLoggedIn",
         "true"
     );
 
 
-    /*
-       Ghi nhớ tài khoản
-    */
-
-    const remember =
-        document.getElementById(
-            "remember"
-        ).checked;
-
-
-    if(remember){
-
-        localStorage.setItem(
-            "eldoradoRememberedName",
-            username
-        );
-
-    }
-
-    else{
-
-        localStorage.removeItem(
-            "eldoradoRememberedName"
-        );
-
-    }
-
-
-    /* Hiện thông báo */
-
     showMessage(
-        "Đăng nhập thành công!",
+        "Đăng nhập thành công! Đang vào game...",
         "success"
     );
 
 
     /*
-       Hiện loading
+       CHUYỂN THẲNG ĐẾN GITHUB PAGES
     */
 
-    document
-        .getElementById(
-            "loading"
-        )
-        .classList
-        .add("show");
+    setTimeout(function(){
 
+        window.location.replace(
+            "https://caosonphan2013-jpg.github.io/giaodien.html"
+        );
 
-    /*
-       Chờ một chút rồi
-       chuyển sang giaodien.html
-    */
-
-    setTimeout(
-
-        function(){
-
-            window.location.href =
-                "giaodien.html";
-
-        },
-
-        700
-
-    );
+    },500);
 
 }
-
-
-/* =====================================================
-   NHẤN ENTER ĐỂ ĐĂNG NHẬP
-===================================================== */
-
-document
-    .getElementById("password")
-    .addEventListener(
-        "keydown",
-        function(event){
-
-            if(
-                event.key ===
-                "Enter"
-            ){
-
-                login();
-
-            }
-
-        }
-    );
-
-
-/* =====================================================
-   TỰ ĐIỀN TÀI KHOẢN
-===================================================== */
-
-window.addEventListener(
-    "load",
-    function(){
-
-        const savedName =
-            localStorage.getItem(
-                "eldoradoRememberedName"
-            );
-
-
-        if(savedName){
-
-            document
-                .getElementById(
-                    "username"
-                )
-                .value =
-                    savedName;
-
-
-            document
-                .getElementById(
-                    "remember"
-                )
-                .checked =
-                    true;
-
-        }
-
-    }
-);
 
 </script>
 
