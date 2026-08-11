@@ -1,75 +1,53 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport"
-      content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no">
+      content="width=device-width, initial-scale=1.0,
+               maximum-scale=1.0, user-scalable=no">
 
 <title>EL DORADO - Đăng nhập</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-html,body{
+html,
+body{
     width:100%;
-    min-height:100%;
+    height:100%;
+    overflow:hidden;
 }
 
 body{
-
     min-height:100vh;
-
     display:flex;
-    align-items:center;
     justify-content:center;
-
-    padding:20px;
+    align-items:center;
 
     font-family:Arial,Helvetica,sans-serif;
 
-    color:white;
+    background:#050505 url("./nennhom.jpg")
+    center center / cover no-repeat fixed;
 
-    background:
-        linear-gradient(
-            rgba(0,0,0,0.35),
-            rgba(0,0,0,0.75)
-        ),
-        url("nennhom.jpg")
-        center/cover
-        no-repeat fixed;
+    color:white;
 }
 
 .login-box{
-
-    width:100%;
-    max-width:390px;
-
+    width:min(400px,92vw);
     padding:28px 24px;
 
-    border-radius:22px;
+    background:rgba(8,13,22,.94);
 
-    background:
-        linear-gradient(
-            160deg,
-            rgba(13,22,36,0.96),
-            rgba(5,10,18,0.96)
-        );
-
-    border:1px solid
-        rgba(255,215,100,0.35);
+    border:2px solid rgba(255,214,90,.35);
+    border-radius:20px;
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,0.65);
+        0 20px 60px rgba(0,0,0,.65),
+        0 0 30px rgba(220,175,50,.12);
 
     backdrop-filter:blur(10px);
     -webkit-backdrop-filter:blur(10px);
@@ -77,33 +55,29 @@ body{
 
 .logo{
     text-align:center;
-    margin-bottom:28px;
+    margin-bottom:27px;
 }
 
 .logo h1{
-
+    color:#ffd65a;
     font-size:39px;
     font-weight:900;
-
-    letter-spacing:2px;
-
-    color:#ffd65a;
+    letter-spacing:3px;
 
     text-shadow:
-        0 3px 0 #704500,
-        0 0 20px rgba(255,210,70,0.55);
+        0 3px 0 #6e4500,
+        0 0 18px rgba(255,210,70,.45);
 }
 
 .logo p{
-
     margin-top:7px;
-    color:#aeb7c5;
+    color:#adb6c4;
     font-size:13px;
 }
 
 .title{
     text-align:center;
-    margin-bottom:21px;
+    margin-bottom:20px;
 }
 
 .title h2{
@@ -112,46 +86,8 @@ body{
 }
 
 .title p{
-    color:#8994a5;
+    color:#8d98a8;
     font-size:13px;
-}
-
-.message{
-
-    display:none;
-
-    padding:11px 12px;
-    margin-bottom:15px;
-
-    border-radius:10px;
-
-    font-size:13px;
-
-    text-align:center;
-}
-
-.message.show{
-    display:block;
-}
-
-.message.error{
-
-    color:#ffb3b3;
-
-    background:rgba(255,70,70,0.10);
-
-    border:1px solid
-        rgba(255,70,70,0.25);
-}
-
-.message.success{
-
-    color:#adf0b7;
-
-    background:rgba(70,220,100,0.10);
-
-    border:1px solid
-        rgba(70,220,100,0.25);
 }
 
 .input-group{
@@ -159,51 +95,37 @@ body{
 }
 
 .input-group label{
-
     display:block;
-
     margin-bottom:7px;
-
+    color:#d6dce5;
     font-size:13px;
-
     font-weight:bold;
-
-    color:#d4dae2;
 }
 
 .input-group input{
-
     width:100%;
-
-    height:49px;
+    height:50px;
 
     padding:0 14px;
 
+    border:1px solid rgba(255,255,255,.12);
     border-radius:11px;
-
-    border:1px solid
-        rgba(255,255,255,0.12);
 
     outline:none;
 
-    background:
-        rgba(255,255,255,0.06);
-
+    background:rgba(255,255,255,.06);
     color:white;
 
     font-size:15px;
 }
 
 .input-group input::placeholder{
-    color:#667184;
+    color:#667182;
 }
 
 .input-group input:focus{
-
-    border-color:#e2b23f;
-
-    background:
-        rgba(255,255,255,0.09);
+    border-color:#e2b33e;
+    background:rgba(255,255,255,.09);
 }
 
 .password-box{
@@ -211,196 +133,159 @@ body{
 }
 
 .password-box input{
-    padding-right:52px;
+    padding-right:50px;
 }
 
-.password-button{
-
+.eye{
     position:absolute;
-
     right:5px;
     top:5px;
 
-    width:39px;
-    height:39px;
+    width:40px;
+    height:40px;
 
-    border:none;
+    border:0;
     background:transparent;
 
-    color:#aab3c1;
-
+    color:#adb6c2;
     font-size:17px;
 
     cursor:pointer;
 }
 
 .remember{
-
     display:flex;
     align-items:center;
-
     gap:7px;
 
-    margin:
-        6px 0 18px;
+    margin:6px 0 18px;
 
-    color:#9ea8b8;
-
+    color:#9da7b6;
     font-size:12px;
 }
 
 .remember input{
-    accent-color:#e5b33e;
+    accent-color:#e6b43f;
 }
 
-.login-button{
-
+.login-btn{
     width:100%;
-
     height:51px;
 
-    border:none;
-
+    border:0;
     border-radius:12px;
 
     background:
         linear-gradient(
             135deg,
-            #b77808,
-            #ffd65b
+            #b87809,
+            #ffd65a
         );
 
-    color:#1e1507;
+    color:#1d1506;
 
     font-size:16px;
-
     font-weight:900;
 
     cursor:pointer;
 }
 
-.footer{
+.login-btn:active{
+    transform:scale(.98);
+}
 
-    margin-top:20px;
+.message{
+    display:none;
+
+    margin-bottom:14px;
+    padding:10px 12px;
+
+    border-radius:10px;
 
     text-align:center;
+    font-size:13px;
+}
 
-    color:#5f6b7a;
+.message.show{
+    display:block;
+}
 
+.message.error{
+    color:#ffb4b4;
+    background:rgba(255,70,70,.10);
+    border:1px solid rgba(255,70,70,.24);
+}
+
+.message.success{
+    color:#b0efb8;
+    background:rgba(70,220,100,.10);
+    border:1px solid rgba(70,220,100,.24);
+}
+
+.footer{
+    margin-top:18px;
+    text-align:center;
+    color:#5c6776;
     font-size:10px;
 }
-
-/* THÊM GIAO DIỆN NÚT LẬP NHÓM VÀ DRAW (TÀNG HÌNH) */
-.nut-lap-nhom {
-    position: absolute;
-    bottom: 2%;
-    left: 1%;
-    width: 15%; 
-    height: 20%;
-    display: block;
-    z-index: 10;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.nut-draw {
-    position: absolute;
-    bottom: 2%;
-    right: 1%;
-    width: 15%; 
-    height: 20%;
-    display: block;
-    z-index: 10;
-    -webkit-tap-highlight-color: transparent;
-}
-
 </style>
-
 </head>
 
 <body>
 
-<!-- THÊM CHỨC NĂNG BẤM TÀNG HÌNH CHO 2 NÚT -->
-<a href="lap-nhom.html" class="nut-lap-nhom"></a>
-<a href="draw.html" class="nut-draw"></a>
-
 <div class="login-box">
 
     <div class="logo">
-
         <h1>EL DORADO</h1>
-
-        <p>
-            Thế giới phiêu lưu đang chờ bạn
-        </p>
-
+        <p>Thế giới phiêu lưu đang chờ bạn</p>
     </div>
 
     <div class="title">
-
         <h2>Đăng nhập</h2>
-
-        <p>
-            Nhập tài khoản để bắt đầu
-        </p>
-
+        <p>Nhập thông tin để bắt đầu</p>
     </div>
 
-    <div
-        id="message"
-        class="message">
-    </div>
+    <div id="message" class="message"></div>
 
     <div class="input-group">
-
         <label>Tài khoản</label>
 
         <input
             id="username"
             type="text"
-            placeholder="Nhập tên tài khoản">
-
+            placeholder="Nhập tên người chơi"
+            autocomplete="username">
     </div>
 
     <div class="input-group">
-
         <label>Mật khẩu</label>
 
         <div class="password-box">
-
             <input
                 id="password"
                 type="password"
-                placeholder="Nhập mật khẩu">
+                placeholder="Nhập mật khẩu"
+                autocomplete="current-password">
 
             <button
+                class="eye"
                 type="button"
-                class="password-button"
                 onclick="togglePassword()">
-
                 👁
-
             </button>
-
         </div>
-
     </div>
 
     <label class="remember">
-
-        <input
-            id="remember"
-            type="checkbox">
-
+        <input id="remember" type="checkbox">
         Ghi nhớ tài khoản
-
     </label>
 
     <button
-        class="login-button"
+        class="login-btn"
+        type="button"
         onclick="login()">
-
         ĐĂNG NHẬP
-
     </button>
 
     <div class="footer">
@@ -409,42 +294,26 @@ body{
 
 </div>
 
-
 <script>
-
-function showMessage(text,type){
-
-    const box =
-        document.getElementById("message");
+function showMessage(text, type){
+    const box = document.getElementById("message");
 
     box.textContent = text;
-
-    box.className =
-        "message show " + type;
+    box.className = "message show " + type;
 }
-
 
 function togglePassword(){
+    const input = document.getElementById("password");
+    const button = document.querySelector(".eye");
 
-    const password =
-        document.getElementById("password");
-
-    const button =
-        document.querySelector(".password-button");
-
-    if(password.type === "password"){
-
-        password.type = "text";
+    if(input.type === "password"){
+        input.type = "text";
         button.textContent = "🙈";
-
     }else{
-
-        password.type = "password";
+        input.type = "password";
         button.textContent = "👁";
-
     }
 }
-
 
 function login(){
 
@@ -457,63 +326,77 @@ function login(){
         document.getElementById("password")
         .value;
 
-
     if(username === ""){
-
         showMessage(
             "Vui lòng nhập tài khoản.",
             "error"
         );
-
         return;
     }
 
-
     if(password === ""){
-
         showMessage(
             "Vui lòng nhập mật khẩu.",
             "error"
         );
-
         return;
     }
-
-
-    /* Lưu tên người chơi */
 
     localStorage.setItem(
         "eldoradoPlayerName",
         username
     );
 
-
     localStorage.setItem(
         "eldoradoLoggedIn",
         "true"
     );
 
+    if(
+        document.getElementById("remember").checked
+    ){
+        localStorage.setItem(
+            "eldoradoRememberedName",
+            username
+        );
+    }
 
     showMessage(
         "Đăng nhập thành công! Đang vào game...",
         "success"
     );
 
-
-    /*
-       CHUYỂN THẲNG ĐẾN GITHUB PAGES (GIỮ NGUYÊN NHƯ CỦA BẠN)
-    */
-
     setTimeout(function(){
-
-        window.location.replace(
-            "https://caosonphan2013-jpg.github.io/giaodien.html"
-        );
-
-    },500);
-
+        window.location.href = "./giaodien.html";
+    }, 500);
 }
 
+document
+    .getElementById("password")
+    .addEventListener("keydown", function(e){
+        if(e.key === "Enter"){
+            login();
+        }
+    });
+
+window.addEventListener("load", function(){
+
+    const saved =
+        localStorage.getItem(
+            "eldoradoRememberedName"
+        );
+
+    if(saved){
+
+        document.getElementById(
+            "username"
+        ).value = saved;
+
+        document.getElementById(
+            "remember"
+        ).checked = true;
+    }
+});
 </script>
 
 </body>
