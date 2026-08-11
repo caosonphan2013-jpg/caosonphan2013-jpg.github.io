@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Rút Nhân Vật - El Dorado</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font-family: sans-serif; }
+
+    #screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    #bg {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Vùng bấm tàng hình đè lên 4 thẻ Gacha */
+    .gacha-card {
+      position: absolute;
+      top: 18%;
+      height: 60%;
+      z-index: 10;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #card-bp6  { left: 3%;  width: 21%; }
+    #card-bp7  { left: 26%; width: 22%; }
+    #card-sel1 { left: 51%; width: 22%; }
+    #card-sel6 { left: 75%; width: 22%; }
+
+    /* Nút Lập nhóm ở dưới màn hình */
+    .btn-lapnhom {
+      position: absolute;
+      bottom: 3%;
+      left: 43%;
+      width: 14%;
+      height: 9%;
+      z-index: 10;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Popup hiệu ứng khi rút nhân vật */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .popup-box {
+      background: #1e1333;
+      border: 3px solid #ffd700;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+      width: 80%;
+      max-width: 350px;
+      box-shadow: 0 0 20px #ffd700;
+    }
+
+    .popup-title { font-size: 1.2rem; color: #ffd700; margin-bottom: 10px; font-weight: bold; }
+    .popup-result { font-size: 1.1rem; margin: 15px 0; color: #00ffcc; }
+    .popup-btn {
+      background: #c8860a;
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="screen">
+  <!-- Ảnh nền Gacha -->
+  <img id="bg" src="nendraw.jpg">
+
+  <!-- 4 Vùng bấm gacha -->
+  <div id="card-bp6" class="gacha-card" onclick="quayGacha('Bonus Point 6 Sao', 1)"></div>
+  <div id="card-bp7" class="gacha-card" onclick="quayGacha('Bonus Point 7 Sao', 1)"></div>
+  <div id="card-sel1" class="gacha-card" onclick="quayGacha('Selection (100 Gem)', 1)"></div>
+  <div id="card-sel6" class="gacha-card" onclick="quayGacha('Selection Plus x6 (500 Gem)', 6)"></div>
+
+  <!-- Nút tàng hình chuyển qua trang Lập Nhóm -->
+  <a href="lap-nhom.html" class="btn-lapnhom"></a>
+</div>
+
+<!-- Khung Popup kết quả rút -->
+<div id="popup" class="popup-overlay">
+  <div class="popup-box">
+    <div class="popup-title">🎉 KẾT QUẢ RÚT THƯỞNG</div>
+    <div id="popup-text" class="popup-result">Bạn nhận được Nhân vật 6★!</div>
+    <button class="popup-btn" onclick="dongPopup()">XÁC NHẬN</button>
+  </div>
+</div>
+
+<script>
+  function quayGacha(tenGoi, soLuong) {
+    const popup = document.getElementById('popup');
+    const text = document.getElementById('popup-text');
+    
+    if (soLuong === 1) {
+      const sao = Math.floor(Math.random() * 4) + 4; // Rút ngẫu nhiên từ 4 đến 7 sao
+      text.innerHTML = `Bạn đã dùng <b>${tenGoi}</b><br><br>🌟 Nhận được: <b>Nhân vật ${sao} Sao</b>!`;
+    } else {
+      text.innerHTML = `Bạn đã dùng <b>${tenGoi}</b><br><br>🎁 Nhận thành công <b>6 Nhân Vật</b> từ 4★ - 7★!`;
+    }
+    
+    popup.style.display = 'flex';
+  }
+
+  function dongPopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
