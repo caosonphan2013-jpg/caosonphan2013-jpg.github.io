@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
+
+<title>EL DORADO</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+}
+
+#game{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    background:#000;
+}
+
+/* =====================================================
+   ẢNH GIAO DIỆN GỐC
+===================================================== */
+
+#gameImage{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:100vw;
+    height:100vh;
+
+    transform:translate(-50%,-50%);
+
+    object-fit:contain;
+
+    display:block;
+
+    user-select:none;
+    -webkit-user-drag:none;
+}
+
+
+/* =====================================================
+   LỚP NÚT
+===================================================== */
+
+#buttons{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:1536px;
+    height:864px;
+
+    transform:translate(-50%,-50%);
+
+    transform-origin:center center;
+
+    pointer-events:none;
+}
+
+
+/* Tất cả vùng bấm */
+
+.hit{
+    position:absolute;
+
+    border:0;
+    background:rgba(255,255,255,0);
+
+    pointer-events:auto;
+
+    cursor:pointer;
+
+    border-radius:20px;
+}
+
+
+/* Khi nhấn */
+
+.hit:active{
+    background:rgba(255,215,80,.15);
+
+    box-shadow:
+        inset 0 0 0 2px
+        rgba(255,215,80,.45);
+}
+
+
+/* =====================================================
+   THANH PROFILE
+===================================================== */
+
+.profile{
+    left:18px;
+    top:18px;
+
+    width:360px;
+    height:92px;
+}
+
+
+/* =====================================================
+   RESOURCE
+===================================================== */
+
+.resource1{
+    left:505px;
+    top:14px;
+
+    width:190px;
+    height:60px;
+}
+
+.resource2{
+    left:705px;
+    top:14px;
+
+    width:190px;
+    height:60px;
+}
+
+.resource3{
+    left:905px;
+    top:14px;
+
+    width:190px;
+    height:60px;
+}
+
+.resource4{
+    left:1105px;
+    top:14px;
+
+    width:175px;
+    height:60px;
+}
+
+
+/* =====================================================
+   GÓC PHẢI TRÊN
+===================================================== */
+
+.mail{
+    right:170px;
+    top:7px;
+
+    width:63px;
+    height:63px;
+}
+
+.menu{
+    right:100px;
+    top:7px;
+
+    width:63px;
+    height:63px;
+}
+
+.settings{
+    right:30px;
+    top:7px;
+
+    width:63px;
+    height:63px;
+}
+
+
+/* =====================================================
+   EVENT BÊN PHẢI
+===================================================== */
+
+.monthly{
+    right:30px;
+    top:104px;
+
+    width:305px;
+    height:138px;
+}
+
+.special{
+    right:28px;
+    top:270px;
+
+    width:125px;
+    height:160px;
+}
+
+
+/* =====================================================
+   NÚT DƯỚI
+===================================================== */
+
+.lapnhom{
+    left:25px;
+    bottom:8px;
+
+    width:125px;
+    height:120px;
+}
+
+.nangcap{
+    left:165px;
+    bottom:8px;
+
+    width:125px;
+    height:120px;
+}
+
+.draw{
+    left:305px;
+    bottom:8px;
+
+    width:125px;
+    height:120px;
+}
+
+.shop{
+    left:445px;
+    bottom:8px;
+
+    width:125px;
+    height:120px;
+}
+
+.thanhtich{
+    left:585px;
+    bottom:8px;
+
+    width:135px;
+    height:120px;
+}
+
+.banghoi{
+    left:735px;
+    bottom:8px;
+
+    width:130px;
+    height:120px;
+}
+
+
+/* =====================================================
+   GAME START
+===================================================== */
+
+.game-start{
+    right:0;
+    bottom:0;
+
+    width:385px;
+    height:145px;
+
+    border-radius:40px 0 0 0;
+}
+
+
+/* =====================================================
+   POPUP
+===================================================== */
+
+#popup{
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.65);
+
+    z-index:1000;
+}
+
+#popup.show{
+    display:flex;
+}
+
+#popupBox{
+    width:min(92vw,420px);
+
+    padding:24px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            160deg,
+            #162338,
+            #09111d
+        );
+
+    border:2px solid #d9a83e;
+
+    color:white;
+
+    text-align:center;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.65);
+}
+
+#popupTitle{
+    color:#ffd76a;
+
+    font-size:24px;
+
+    margin-bottom:10px;
+}
+
+#popupText{
+    color:#bfc7d4;
+
+    line-height:1.5;
+
+    margin-bottom:20px;
+}
+
+.closeBtn{
+    width:100%;
+
+    padding:13px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b77b0b,
+            #ffd55a
+        );
+
+    color:#201506;
+
+    font-weight:900;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:700px){
+
+    #gameImage{
+        width:100vw;
+        height:100vh;
+    }
+
+}
+</style>
+</head>
+
+
+<body>
+
+<div id="game">
+
+    <!-- =================================================
+         ẢNH GIAO DIỆN
+    ================================================== -->
+
+    <img
+        id="gameImage"
+        src="nengame.png"
+        alt="El Dorado"
+    >
+
+
+    <!-- =================================================
+         CÁC VÙNG BẤM
+    ================================================== -->
+
+    <div id="buttons">
+
+        <!-- Profile -->
+
+        <button
+            class="hit profile"
+            onclick="openPopup('Nhân vật')">
+        </button>
+
+
+        <!-- Resource -->
+
+        <button
+            class="hit resource1"
+            onclick="openPopup('Tài nguyên 1')">
+        </button>
+
+        <button
+            class="hit resource2"
+            onclick="openPopup('Vàng')">
+        </button>
+
+        <button
+            class="hit resource3"
+            onclick="openPopup('Ngọc')">
+        </button>
+
+        <button
+            class="hit resource4"
+            onclick="openPopup('BP')">
+        </button>
+
+
+        <!-- Menu trên -->
+
+        <button
+            class="hit mail"
+            onclick="openPopup('Hộp thư')">
+        </button>
+
+        <button
+            class="hit menu"
+            onclick="openPopup('Menu')">
+        </button>
+
+        <button
+            class="hit settings"
+            onclick="openPopup('Cài đặt')">
+        </button>
+
+
+        <!-- Event -->
+
+        <button
+            class="hit monthly"
+            onclick="openPopup('Monthly Character')">
+        </button>
+
+        <button
+            class="hit special"
+            onclick="openPopup('Special Event')">
+        </button>
+
+
+        <!-- Menu dưới -->
+
+        <button
+            class="hit lapnhom"
+            onclick="openPopup('Lập nhóm')">
+        </button>
+
+        <button
+            class="hit nangcap"
+            onclick="openPopup('Nâng cấp')">
+        </button>
+
+        <button
+            class="hit draw"
+            onclick="openPopup('Draw')">
+        </button>
+
+        <button
+            class="hit shop"
+            onclick="openPopup('Shop')">
+        </button>
+
+        <button
+            class="hit thanhtich"
+            onclick="openPopup('Thành tích')">
+        </button>
+
+        <button
+            class="hit banghoi"
+            onclick="openPopup('Bang hội')">
+        </button>
+
+
+        <!-- Game Start -->
+
+        <button
+            class="hit game-start"
+            onclick="startGame()">
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     POPUP
+====================================================== -->
+
+<div
+    id="popup"
+    onclick="outsideClose(event)">
+
+    <div id="popupBox">
+
+        <h2 id="popupTitle">
+            El Dorado
+        </h2>
+
+        <p id="popupText">
+            Tính năng đang được phát triển.
+        </p>
+
+        <button
+            class="closeBtn"
+            onclick="closePopup()">
+            Đóng
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   THÔNG BÁO
+===================================================== */
+
+function openPopup(name){
+
+    document.getElementById(
+        "popupTitle"
+    ).textContent = name;
+
+
+    document.getElementById(
+        "popupText"
+    ).textContent =
+        "Bạn vừa nhấn vào " +
+        name +
+        ". Tính năng này sẽ được phát triển ở bước tiếp theo.";
+
+
+    document.getElementById(
+        "popup"
+    ).classList.add("show");
+
+}
+
+
+function closePopup(){
+
+    document.getElementById(
+        "popup"
+    ).classList.remove("show");
+
+}
+
+
+function outsideClose(event){
+
+    if(
+        event.target ===
+        document.getElementById("popup")
+    ){
+
+        closePopup();
+
+    }
+
+}
+
+
+/* =====================================================
+   GAME START
+===================================================== */
+
+function startGame(){
+
+    openPopup("GAME START");
+
+}
+
+
+/* =====================================================
+   ĐIỀU CHỈNH GIAO DIỆN
+===================================================== */
+
+function resizeGame(){
+
+    const buttons =
+        document.getElementById("buttons");
+
+    const sw =
+        window.innerWidth;
+
+    const sh =
+        window.innerHeight;
+
+
+    const designW = 1536;
+    const designH = 864;
+
+
+    const scale =
+        Math.min(
+            sw / designW,
+            sh / designH
+        );
+
+
+    buttons.style.transform =
+        "translate(-50%,-50%) " +
+        "scale(" + scale + ")";
+
+}
+
+
+window.addEventListener(
+    "resize",
+    resizeGame
+);
+
+window.addEventListener(
+    "orientationchange",
+    function(){
+
+        setTimeout(
+            resizeGame,
+            300
+        );
+
+    }
+);
+
+
+resizeGame();
+
+</script>
+
+</body>
+</html>
