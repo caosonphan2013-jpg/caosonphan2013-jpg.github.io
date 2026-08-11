@@ -290,11 +290,38 @@ body{
     font-size:10px;
 }
 
+/* THÊM GIAO DIỆN NÚT LẬP NHÓM VÀ DRAW (TÀNG HÌNH) */
+.nut-lap-nhom {
+    position: absolute;
+    bottom: 2%;
+    left: 1%;
+    width: 15%; 
+    height: 20%;
+    display: block;
+    z-index: 10;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nut-draw {
+    position: absolute;
+    bottom: 2%;
+    right: 1%;
+    width: 15%; 
+    height: 20%;
+    display: block;
+    z-index: 10;
+    -webkit-tap-highlight-color: transparent;
+}
+
 </style>
 
 </head>
 
 <body>
+
+<!-- THÊM CHỨC NĂNG BẤM TÀNG HÌNH CHO 2 NÚT -->
+<a href="lap-nhom.html" class="nut-lap-nhom"></a>
+<a href="draw.html" class="nut-draw"></a>
 
 <div class="login-box">
 
@@ -474,7 +501,7 @@ function login(){
 
 
     /*
-       CHUYỂN THẲNG ĐẾN GITHUB PAGES
+       CHUYỂN THẲNG ĐẾN GITHUB PAGES (GIỮ NGUYÊN NHƯ CỦA BẠN)
     */
 
     setTimeout(function(){
