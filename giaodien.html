@@ -6,64 +6,71 @@
   <title>Giao Diện Chính - El Dorado</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #1a1a2e; font-family: sans-serif; }
 
     #screen {
-      position: relative;
+      position: fixed;
+      top: 0; left: 0;
       width: 100vw;
       height: 100vh;
     }
-    
+
     #bg {
-      width: 100%; 
+      width: 100%;
       height: 100%;
-      /* Đã bỏ lệnh object-fit để ảnh và nút luôn khớp tỷ lệ với nhau */
+      object-fit: fill;
       display: block;
+      color: #fff;
     }
 
-    /* VÙNG BẤM: LẬP NHÓM (Icon số 1) */
+    /* Nút Lập Nhóm nổi bật */
     .nut-lap-nhom {
       position: absolute;
-      bottom: 2%; /* Căn từ dưới lên */
-      left: 2%;   /* Căn từ trái sang */
-      width: 9%;  /* Độ rộng của nút */
-      height: 18%; /* Chiều cao của nút */
-      display: block;
+      bottom: 3%;
+      left: 1%;
+      width: 10%;
+      height: 18%;
       z-index: 9999;
-      -webkit-tap-highlight-color: transparent;
-      
-      /* Đang bật màu đỏ để bạn dễ nhìn. Khi nào khớp rồi thì xóa 2 dòng dưới đi */
-      background: rgba(255, 0, 0, 0.5); 
-      border: 2px solid yellow;
+      background: rgba(255, 0, 0, 0.7);
+      border: 2px solid #ffd700;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 11px;
+      font-weight: bold;
+      text-decoration: none;
     }
 
-    /* VÙNG BẤM: DRAW (Icon số 3) */
+    /* Nút Draw nổi bật */
     .nut-draw {
       position: absolute;
-      bottom: 2%;   /* Căn từ dưới lên */
-      left: 19.5%;  /* Căn từ trái sang */
-      width: 9%;    /* Độ rộng của nút */
-      height: 18%;  /* Chiều cao của nút */
-      display: block;
+      bottom: 3%;
+      left: 17%;
+      width: 10%;
+      height: 18%;
       z-index: 9999;
-      -webkit-tap-highlight-color: transparent;
-
-      /* Đang bật màu đỏ để bạn dễ nhìn. Khi nào khớp rồi thì xóa 2 dòng dưới đi */
-      background: rgba(255, 0, 0, 0.5);
-      border: 2px solid yellow;
+      background: rgba(0, 150, 255, 0.7);
+      border: 2px solid #ffd700;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 11px;
+      font-weight: bold;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
 
 <div id="screen">
-  <img id="bg" src="nengame_2.png">
+  <img id="bg" src="nengame_2.png" alt="CẢNH BÁO: Chưa tìm thấy file nengame_2.png trên GitHub!">
 
-  <!-- Nút bấm sang trang Lập Nhóm -->
-  <a href="lap-nhom.html" class="nut-lap-nhom"></a>
-
-  <!-- Nút bấm sang trang Rút Nhân Vật (Draw) -->
-  <a href="draw.html" class="nut-draw"></a>
+  <a href="lap-nhom.html" class="nut-lap-nhom">NHÓM</a>
+  <a href="draw.html" class="nut-draw">DRAW</a>
 </div>
 
 </body>
