@@ -1,378 +1,729 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>El Dorado</title>
+    <title>Lập nhóm</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #000;
-    }
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.45),
+                    rgba(0, 0, 0, 0.65)
+                ),
+                url("nennhom.jpg") center/cover fixed no-repeat;
 
-    #screen {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: white;
+        }
 
-    #bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      background: #000;
-    }
+        .container {
+            width: 100%;
+            max-width: 430px;
+        }
 
-    #overlay {
-      position: absolute;
-      pointer-events: none;
-    }
+        .box {
+            background: rgba(20, 20, 25, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 22px;
+            padding: 28px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
-    .btn-hit {
-      position: absolute;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      border-radius: 8px;
-      pointer-events: auto;
-      -webkit-tap-highlight-color: transparent;
-    }
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
 
-    .btn-hit:active {
-      background: rgba(255, 210, 0, 0.25);
-      box-shadow: 0 0 0 2px rgba(255, 210, 0, 0.5);
-    }
+        .title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
 
-    /* POPUP */
-    #popup {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.65);
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      padding: 20px;
-    }
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
 
-    #popup.show {
-      display: flex;
-    }
+        /* Ảnh nhóm */
 
-    #popup-box {
-      width: min(90vw, 420px);
-      background: linear-gradient(160deg, #2a1500, #5c2d00);
-      border: 2px solid #c8860a;
-      border-radius: 16px;
-      padding: 28px 24px;
-      text-align: center;
-      color: #ffd700;
-      font-family: Arial, sans-serif;
-      box-shadow: 0 0 30px rgba(200, 134, 10, 0.4);
-    }
+        .avatar-area {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 22px;
+        }
 
-    #popup-box h2 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-    }
+        .avatar {
+            width: 105px;
+            height: 105px;
+            border-radius: 50%;
+            object-fit: cover;
 
-    #popup-box p {
-      color: #ccc;
-      font-size: 0.95rem;
-      margin-bottom: 20px;
-    }
+            border: 4px solid rgba(255, 255, 255, 0.8);
 
-    #popup-close {
-      background: linear-gradient(135deg, #c8860a, #ffd700);
-      color: #1a0a00;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 28px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-    }
+            background: #292929;
 
-    /* Nếu ảnh lỗi */
-    #image-error {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      inset: 0;
-      align-items: center;
-      justify-content: center;
-      background: #111;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 30px;
-    }
+            cursor: pointer;
 
-    #image-error.show {
-      display: flex;
-    }
+            transition: 0.25s;
+        }
 
-    #image-error div {
-      max-width: 450px;
-    }
+        .avatar:hover {
+            transform: scale(1.05);
+            border-color: #6c8cff;
+        }
 
-    #image-error b {
-      color: #ffd700;
-    }
-  </style>
+        #avatarInput {
+            display: none;
+        }
+
+        .avatar-text {
+            text-align: center;
+            color: #aaa;
+            font-size: 12px;
+            margin-top: -12px;
+            margin-bottom: 20px;
+        }
+
+        /* Input */
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #ddd;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            outline: none;
+
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+
+            border-radius: 12px;
+            padding: 14px;
+
+            font-size: 15px;
+
+            transition: 0.2s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #7187ff;
+            background: rgba(255, 255, 255, 0.11);
+            box-shadow: 0 0 0 3px rgba(113, 135, 255, 0.12);
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #888;
+        }
+
+        textarea {
+            height: 95px;
+            resize: none;
+        }
+
+        .counter {
+            text-align: right;
+            color: #777;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        /* Chế độ nhóm */
+
+        .mode-title {
+            margin-bottom: 10px;
+        }
+
+        .modes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .mode {
+            position: relative;
+        }
+
+        .mode input {
+            display: none;
+        }
+
+        .mode label {
+            cursor: pointer;
+            text-align: center;
+            padding: 13px 8px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            transition: 0.2s;
+        }
+
+        .mode input:checked + label {
+            background: rgba(100, 120, 255, 0.22);
+            border-color: #7187ff;
+            color: white;
+        }
+
+        /* Nút */
+
+        .create-btn {
+            width: 100%;
+            margin-top: 8px;
+
+            border: none;
+            border-radius: 13px;
+
+            padding: 15px;
+
+            color: white;
+            font-size: 16px;
+            font-weight: 800;
+
+            cursor: pointer;
+
+            background: linear-gradient(
+                135deg,
+                #596cff,
+                #8b5cff
+            );
+
+            box-shadow: 0 8px 25px rgba(89, 108, 255, 0.3);
+
+            transition: 0.2s;
+        }
+
+        .create-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(89, 108, 255, 0.45);
+        }
+
+        .create-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Trang nhóm sau khi tạo */
+
+        .group-page {
+            display: none;
+            text-align: center;
+        }
+
+        .group-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            margin-bottom: 15px;
+        }
+
+        .group-name {
+            font-size: 27px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .group-description {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .info {
+            background: rgba(255,255,255,0.06);
+            padding: 14px;
+            border-radius: 13px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .info div {
+            padding: 5px 0;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .back-btn {
+            width: 100%;
+            padding: 13px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.07);
+            color: white;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.12);
+        }
+
+        /* Thông báo */
+
+        .message {
+            display: none;
+            background: rgba(255, 70, 70, 0.15);
+            border: 1px solid rgba(255, 70, 70, 0.35);
+            color: #ff9b9b;
+            padding: 11px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+
+            .box {
+                padding: 22px 18px;
+                border-radius: 18px;
+            }
+
+            .title {
+                font-size: 26px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div id="screen">
+<div class="container">
 
-  <!-- ẢNH NỀN TRONG REPOSITORY -->
-  <img
-    id="bg"
-    src="./nennhom.jpg"
-    alt="El Dorado"
-  >
+    <!-- ========================= -->
+    <!-- FORM LẬP NHÓM -->
+    <!-- ========================= -->
 
-  <div id="overlay"></div>
+    <div class="box" id="createPage">
+
+        <h1 class="title">Tạo nhóm</h1>
+
+        <p class="subtitle">
+            Tạo nhóm của bạn và bắt đầu kết nối
+        </p>
+
+        <!-- Avatar -->
+
+        <div class="avatar-area">
+            <img
+                id="avatarPreview"
+                class="avatar"
+                src="nennhom.jpg"
+                alt="Ảnh nhóm"
+                onclick="document.getElementById('avatarInput').click()"
+            >
+        </div>
+
+        <p class="avatar-text">
+            Nhấn vào ảnh để chọn ảnh nhóm
+        </p>
+
+        <input
+            type="file"
+            id="avatarInput"
+            accept="image/*"
+        >
+
+        <!-- Thông báo -->
+
+        <div
+            class="message"
+            id="message"
+        ></div>
+
+        <!-- Tên nhóm -->
+
+        <div class="form-group">
+
+            <label for="groupName">
+                Tên nhóm
+            </label>
+
+            <input
+                type="text"
+                id="groupName"
+                maxlength="30"
+                placeholder="Nhập tên nhóm..."
+            >
+
+            <div class="counter">
+                <span id="nameCount">0</span>/30
+            </div>
+
+        </div>
+
+        <!-- Mô tả -->
+
+        <div class="form-group">
+
+            <label for="description">
+                Mô tả nhóm
+            </label>
+
+            <textarea
+                id="description"
+                maxlength="150"
+                placeholder="Nhập mô tả nhóm..."
+            ></textarea>
+
+            <div class="counter">
+                <span id="descCount">0</span>/150
+            </div>
+
+        </div>
+
+        <!-- Chế độ -->
+
+        <div class="form-group">
+
+            <label class="mode-title">
+                Chế độ nhóm
+            </label>
+
+            <div class="modes">
+
+                <div class="mode">
+
+                    <input
+                        type="radio"
+                        name="mode"
+                        id="public"
+                        value="Công khai"
+                        checked
+                    >
+
+                    <label for="public">
+                        🌎 Công khai
+                    </label>
+
+                </div>
+
+                <div class="mode">
+
+                    <input
+                        type="radio"
+                        name="mode"
+                        id="private"
+                        value="Riêng tư"
+                    >
+
+                    <label for="private">
+                        🔒 Riêng tư
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Button -->
+
+        <button
+            class="create-btn"
+            onclick="createGroup()"
+        >
+            ✨ TẠO NHÓM
+        </button>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- TRANG NHÓM -->
+    <!-- ========================= -->
+
+    <div
+        class="box group-page"
+        id="groupPage"
+    >
+
+        <img
+            id="groupAvatar"
+            class="group-avatar"
+            src="nennhom.jpg"
+            alt="Avatar nhóm"
+        >
+
+        <h1
+            class="group-name"
+            id="resultName"
+        >
+            Tên nhóm
+        </h1>
+
+        <p
+            class="group-description"
+            id="resultDescription"
+        >
+            Mô tả nhóm
+        </p>
+
+        <div class="info">
+
+            <div>
+                👑 Chủ nhóm:
+                <b>Bạn</b>
+            </div>
+
+            <div>
+                👥 Thành viên:
+                <b>1</b>
+            </div>
+
+            <div>
+                🌎 Chế độ:
+                <b id="resultMode">
+                    Công khai
+                </b>
+            </div>
+
+            <div>
+                🟢 Trạng thái:
+                <b>Đang hoạt động</b>
+            </div>
+
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="backToCreate()"
+        >
+            ← Tạo nhóm khác
+        </button>
+
+    </div>
 
 </div>
 
-<!-- POPUP -->
-<div id="popup">
-  <div id="popup-box">
-
-    <h2 id="popup-title">Lập nhóm</h2>
-
-    <p id="popup-desc">
-      Tính năng này đang được phát triển.
-    </p>
-
-    <button id="popup-close" onclick="closePopup()">
-      Đóng
-    </button>
-
-  </div>
-</div>
-
-<!-- LỖI ẢNH -->
-<div id="image-error">
-  <div>
-    <h2>❌ Không tải được ảnh</h2>
-
-    <p>
-      Không tìm thấy:
-      <br><br>
-      <b>nennhom.jpg</b>
-      <br><br>
-      Hãy kiểm tra file ảnh trong GitHub.
-    </p>
-  </div>
-</div>
 
 <script>
 
-  const bg = document.getElementById("bg");
-  const overlay = document.getElementById("overlay");
+    /* =========================
+       CHỌN ẢNH NHÓM
+    ========================= */
 
-  /* Ảnh phải cùng thư mục với file HTML */
-  const buttons = [
+    const avatarInput =
+        document.getElementById("avatarInput");
 
-    ["Lập nhóm", 5.4, 77, 7.5, 20],
+    const avatarPreview =
+        document.getElementById("avatarPreview");
 
-    ["Nâng cấp", 12.6, 77, 7.5, 20],
-
-    ["Draw", 19.9, 77, 7.5, 20],
-
-    ["Shop", 27.2, 77, 7.5, 20],
-
-    ["Thành tích", 34.5, 77, 7.5, 20],
-
-    ["Bang hội", 41.8, 77, 7.5, 20]
-
-  ];
-
-  const btnElements = [];
-
-  /* TẠO NÚT */
-  buttons.forEach(function(data, index) {
-
-    const btn = document.createElement("button");
-
-    btn.className = "btn-hit";
-
-    btn.id = "btn" + index;
-
-    btn.setAttribute("aria-label", data[0]);
-
-    btn.addEventListener("click", function() {
-
-      openPopup(data[0]);
-
-    });
-
-    overlay.appendChild(btn);
-
-    btnElements.push(btn);
-
-  });
+    const groupAvatar =
+        document.getElementById("groupAvatar");
 
 
-  /* CĂN ẢNH + NÚT */
-  function layout() {
+    avatarInput.addEventListener(
+        "change",
+        function () {
 
-    const sw = window.innerWidth;
-    const sh = window.innerHeight;
+            const file = this.files[0];
 
-    const imgW = bg.naturalWidth || 800;
-    const imgH = bg.naturalHeight || 450;
+            if (!file) return;
 
-    const imgRatio = imgW / imgH;
-    const screenRatio = sw / sh;
+            if (!file.type.startsWith("image/")) {
 
-    let rw;
-    let rh;
-    let rx;
-    let ry;
+                showMessage(
+                    "Vui lòng chọn một file ảnh!"
+                );
 
-    /* object-fit: contain */
-    if (imgRatio > screenRatio) {
+                return;
+            }
 
-      rw = sw;
-      rh = sw / imgRatio;
+            const reader =
+                new FileReader();
 
-      rx = 0;
-      ry = (sh - rh) / 2;
+            reader.onload = function (event) {
 
-    } else {
+                avatarPreview.src =
+                    event.target.result;
 
-      rh = sh;
-      rw = sh * imgRatio;
+                groupAvatar.src =
+                    event.target.result;
 
-      rx = (sw - rw) / 2;
-      ry = 0;
+            };
+
+            reader.readAsDataURL(file);
+        }
+    );
+
+
+    /* =========================
+       ĐẾM KÝ TỰ
+    ========================= */
+
+    const groupName =
+        document.getElementById("groupName");
+
+    const description =
+        document.getElementById("description");
+
+    const nameCount =
+        document.getElementById("nameCount");
+
+    const descCount =
+        document.getElementById("descCount");
+
+
+    groupName.addEventListener(
+        "input",
+        function () {
+
+            nameCount.textContent =
+                this.value.length;
+
+        }
+    );
+
+
+    description.addEventListener(
+        "input",
+        function () {
+
+            descCount.textContent =
+                this.value.length;
+
+        }
+    );
+
+
+    /* =========================
+       HIỆN THÔNG BÁO
+    ========================= */
+
+    function showMessage(text) {
+
+        const message =
+            document.getElementById("message");
+
+        message.textContent = text;
+
+        message.style.display = "block";
 
     }
 
-    overlay.style.left = rx + "px";
-    overlay.style.top = ry + "px";
 
-    overlay.style.width = rw + "px";
-    overlay.style.height = rh + "px";
+    /* =========================
+       TẠO NHÓM
+    ========================= */
 
+    function createGroup() {
 
-    /* Đặt từng nút */
-    buttons.forEach(function(data, index) {
+        const name =
+            groupName.value.trim();
 
-      const btn = btnElements[index];
+        const desc =
+            description.value.trim();
 
-      const cx = data[1];
-      const cy = data[2];
-
-      const bw = data[3];
-      const bh = data[4];
-
-
-      btn.style.left =
-        ((cx - bw / 2) / 100 * rw) + "px";
-
-      btn.style.top =
-        ((cy - bh / 2) / 100 * rh) + "px";
-
-      btn.style.width =
-        (bw / 100 * rw) + "px";
-
-      btn.style.height =
-        (bh / 100 * rh) + "px";
-
-    });
-
-  }
+        const mode =
+            document.querySelector(
+                'input[name="mode"]:checked'
+            ).value;
 
 
-  /* MỞ POPUP */
-  function openPopup(name) {
+        /* Kiểm tra tên */
 
-    document.getElementById("popup-title").textContent = name;
+        if (name.length < 2) {
 
-    document.getElementById("popup-desc").textContent =
-      "Bạn vừa bấm vào " + name + ".";
+            showMessage(
+                "Tên nhóm phải có ít nhất 2 ký tự!"
+            );
 
-    document.getElementById("popup").classList.add("show");
+            groupName.focus();
 
-  }
-
-
-  /* ĐÓNG POPUP */
-  function closePopup() {
-
-    document.getElementById("popup").classList.remove("show");
-
-  }
+            return;
+        }
 
 
-  /* Bấm ra ngoài popup để đóng */
-  document.getElementById("popup").addEventListener("click", function(e) {
+        /* Ẩn thông báo */
 
-    if (e.target === this) {
-      closePopup();
-    }
-
-  });
+        document.getElementById(
+            "message"
+        ).style.display = "none";
 
 
-  /* ẢNH TẢI XONG */
-  bg.addEventListener("load", function() {
+        /* Hiển thị dữ liệu */
 
-    layout();
-
-  });
-
-
-  /* ẢNH LỖI */
-  bg.addEventListener("error", function() {
-
-    document.getElementById("image-error")
-      .classList.add("show");
-
-  });
+        document.getElementById(
+            "resultName"
+        ).textContent = name;
 
 
-  window.addEventListener("resize", layout);
-
-  window.addEventListener("orientationchange", function() {
-
-    setTimeout(layout, 300);
-
-  });
+        document.getElementById(
+            "resultDescription"
+        ).textContent =
+            desc || "Chưa có mô tả";
 
 
-  /* Nếu ảnh đã cache */
-  if (bg.complete) {
+        document.getElementById(
+            "resultMode"
+        ).textContent = mode;
 
-    if (bg.naturalWidth > 0) {
 
-      layout();
+        /* Chuyển trang */
+
+        document.getElementById(
+            "createPage"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "groupPage"
+        ).style.display = "block";
 
     }
 
-  }
+
+    /* =========================
+       QUAY LẠI
+    ========================= */
+
+    function backToCreate() {
+
+        document.getElementById(
+            "groupPage"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "createPage"
+        ).style.display = "block";
+
+    }
 
 </script>
 
