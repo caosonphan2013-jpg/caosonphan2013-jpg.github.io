@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width,
-initial-scale=1.0,
-maximum-scale=1.0,
-user-scalable=no">
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
 
 <title>EL DORADO - Đăng nhập</title>
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
     box-sizing:border-box;
@@ -19,7 +24,8 @@ user-scalable=no">
     padding:0;
 }
 
-html,body{
+html,
+body{
     width:100%;
     min-height:100%;
 }
@@ -29,33 +35,47 @@ body{
     min-height:100vh;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     padding:20px;
 
-    font-family:Arial,sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     color:white;
 
     background:
+
         linear-gradient(
-            rgba(0,0,0,.45),
-            rgba(0,0,0,.75)
+            rgba(0,0,0,0.35),
+            rgba(0,0,0,0.72)
         ),
+
         url("nennhom.jpg")
-        center/cover
-        no-repeat fixed;
+
+        center center /
+
+        cover
+
+        no-repeat
+
+        fixed;
 }
 
 
-/* =========================
-   KHUNG ĐĂNG NHẬP
-========================= */
+/* =====================================================
+   LOGIN BOX
+===================================================== */
 
 .login-box{
 
     width:100%;
+
     max-width:390px;
 
     padding:28px 24px;
@@ -63,66 +83,82 @@ body{
     border-radius:22px;
 
     background:
-        rgba(8,13,22,.90);
+        linear-gradient(
+            160deg,
+            rgba(13,22,36,0.95),
+            rgba(5,10,18,0.95)
+        );
 
-    border:1px solid
-        rgba(255,215,100,.30);
+    border:
+        1px solid
+        rgba(255,215,100,0.35);
 
     box-shadow:
-        0 25px 60px
-        rgba(0,0,0,.60);
 
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
+        0 25px 70px
+        rgba(0,0,0,0.65),
+
+        inset
+        0 1px 0
+        rgba(255,255,255,0.05);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
 }
 
 
-/* =========================
+/* =====================================================
    LOGO
-========================= */
+===================================================== */
 
 .logo{
 
     text-align:center;
 
-    margin-bottom:28px;
+    margin-bottom:27px;
 }
 
 .logo h1{
 
-    font-size:38px;
+    font-size:39px;
 
     font-weight:900;
 
     letter-spacing:2px;
 
-    color:#ffd75a;
+    color:#ffd65a;
 
     text-shadow:
-        0 3px 0 #734600,
-        0 0 18px
-        rgba(255,210,70,.45);
+
+        0 3px 0
+        #704500,
+
+        0 0 20px
+        rgba(255,210,70,0.55);
 }
 
 .logo p{
 
-    margin-top:8px;
+    margin-top:7px;
+
+    color:#aeb7c5;
 
     font-size:13px;
-
-    color:#aab2bf;
 }
 
 
-/* =========================
-   TIÊU ĐỀ
-========================= */
+/* =====================================================
+   TITLE
+===================================================== */
 
 .title{
 
     text-align:center;
 
-    margin-bottom:22px;
+    margin-bottom:21px;
 }
 
 .title h2{
@@ -134,19 +170,70 @@ body{
 
 .title p{
 
-    color:#8993a3;
+    color:#8994a5;
 
     font-size:13px;
 }
 
 
-/* =========================
-   INPUT
-========================= */
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message{
+
+    display:none;
+
+    padding:11px 12px;
+
+    margin-bottom:15px;
+
+    border-radius:10px;
+
+    font-size:13px;
+
+    line-height:1.4;
+
+    text-align:center;
+}
+
+.message.show{
+
+    display:block;
+}
+
+.message.error{
+
+    color:#ffb3b3;
+
+    background:
+        rgba(255,70,70,0.10);
+
+    border:
+        1px solid
+        rgba(255,70,70,0.25);
+}
+
+.message.success{
+
+    color:#adf0b7;
+
+    background:
+        rgba(70,220,100,0.10);
+
+    border:
+        1px solid
+        rgba(70,220,100,0.25);
+}
+
+
+/* =====================================================
+   INPUT GROUP
+===================================================== */
 
 .input-group{
 
-    margin-bottom:17px;
+    margin-bottom:16px;
 }
 
 .input-group label{
@@ -159,182 +246,98 @@ body{
 
     font-weight:bold;
 
-    color:#d2d8e0;
+    color:#d4dae2;
 }
 
 .input-group input{
 
     width:100%;
 
-    height:48px;
+    height:49px;
 
-    padding:0 14px;
+    padding:
+        0 14px;
 
     border-radius:11px;
 
-    border:1px solid
-        rgba(255,255,255,.12);
-
-    background:
-        rgba(255,255,255,.06);
-
-    color:white;
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
 
     outline:none;
 
+    background:
+        rgba(255,255,255,0.06);
+
+    color:white;
+
     font-size:15px;
 
-    transition:.2s;
+    transition:
+        border-color 0.2s,
+        background 0.2s,
+        box-shadow 0.2s;
 }
 
 .input-group input::placeholder{
 
-    color:#697486;
+    color:#667184;
 }
 
 .input-group input:focus{
 
-    border-color:#e2b13e;
+    border-color:#e2b23f;
 
     background:
-        rgba(255,255,255,.09);
+        rgba(255,255,255,0.09);
 
     box-shadow:
         0 0 0 3px
-        rgba(226,177,62,.10);
+        rgba(226,178,63,0.10);
 }
 
 
-/* =========================
+/* =====================================================
    PASSWORD
-========================= */
+===================================================== */
 
-.password{
+.password-box{
 
     position:relative;
 }
 
-.password input{
+.password-box input{
 
-    padding-right:50px;
+    padding-right:52px;
 }
 
-.eye{
+.password-button{
 
     position:absolute;
 
     right:5px;
+
     top:5px;
 
-    width:38px;
-    height:38px;
+    width:39px;
 
-    border:0;
+    height:39px;
+
+    border:none;
 
     background:transparent;
 
-    color:#aab2bf;
-
-    cursor:pointer;
+    color:#aab3c1;
 
     font-size:17px;
-}
-
-
-/* =========================
-   ĐĂNG NHẬP
-========================= */
-
-.login-btn{
-
-    width:100%;
-
-    height:50px;
-
-    margin-top:5px;
-
-    border:0;
-
-    border-radius:12px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #b67908,
-            #ffd75c
-        );
-
-    color:#181107;
-
-    font-size:16px;
-
-    font-weight:900;
 
     cursor:pointer;
-
-    box-shadow:
-        0 10px 25px
-        rgba(220,170,45,.25);
-
-    transition:.15s;
-}
-
-.login-btn:active{
-
-    transform:scale(.98);
 }
 
 
-/* =========================
-   THÔNG BÁO
-========================= */
-
-.message{
-
-    display:none;
-
-    margin-bottom:15px;
-
-    padding:11px;
-
-    border-radius:10px;
-
-    text-align:center;
-
-    font-size:13px;
-}
-
-.message.show{
-
-    display:block;
-}
-
-.message.error{
-
-    color:#ffb0b0;
-
-    background:
-        rgba(255,70,70,.10);
-
-    border:1px solid
-        rgba(255,70,70,.25);
-}
-
-.message.success{
-
-    color:#a9efb4;
-
-    background:
-        rgba(70,220,100,.10);
-
-    border:1px solid
-        rgba(70,220,100,.25);
-}
-
-
-/* =========================
-   GHI NHỚ
-========================= */
+/* =====================================================
+   REMEMBER
+===================================================== */
 
 .remember{
 
@@ -345,23 +348,100 @@ body{
     gap:7px;
 
     margin:
-        13px 0
+        6px 0
         18px;
 
-    color:#9da6b5;
+    color:#9ea8b8;
 
     font-size:12px;
 }
 
 .remember input{
 
+    width:15px;
+
+    height:15px;
+
     accent-color:#e5b33e;
 }
 
 
-/* =========================
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+.login-button{
+
+    width:100%;
+
+    height:51px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #b77808,
+            #ffd65b
+        );
+
+    color:#1e1507;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    letter-spacing:0.3px;
+
+    cursor:pointer;
+
+    box-shadow:
+
+        0 10px 28px
+        rgba(220,170,45,0.25);
+
+    transition:
+        transform 0.12s,
+        filter 0.12s;
+}
+
+.login-button:active{
+
+    transform:scale(0.98);
+
+    filter:brightness(0.92);
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+    display:none;
+
+    margin-top:13px;
+
+    text-align:center;
+
+    color:#cfd5df;
+
+    font-size:12px;
+}
+
+.loading.show{
+
+    display:block;
+}
+
+
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 .footer{
 
@@ -369,17 +449,73 @@ body{
 
     text-align:center;
 
-    color:#5f6a79;
+    color:#5f6b7a;
 
     font-size:10px;
 }
 
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(
+    max-width:450px
+){
+
+    body{
+
+        padding:12px;
+    }
+
+    .login-box{
+
+        padding:
+            22px 18px;
+
+        border-radius:19px;
+    }
+
+    .logo h1{
+
+        font-size:34px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL HEIGHT
+===================================================== */
+
+@media(
+    max-height:650px
+){
+
+    body{
+
+        align-items:flex-start;
+
+        padding-top:15px;
+
+        padding-bottom:15px;
+
+        overflow:auto;
+    }
+
+}
+
 </style>
+
 </head>
 
 
 <body>
 
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
 <div class="login-box">
 
@@ -388,7 +524,9 @@ body{
 
     <div class="logo">
 
-        <h1>EL DORADO</h1>
+        <h1>
+            EL DORADO
+        </h1>
 
         <p>
             Thế giới phiêu lưu đang chờ bạn
@@ -397,28 +535,31 @@ body{
     </div>
 
 
-    <!-- TIÊU ĐỀ -->
+    <!-- TITLE -->
 
     <div class="title">
 
-        <h2>Đăng nhập</h2>
+        <h2>
+            Đăng nhập
+        </h2>
 
         <p>
-            Đăng nhập để tiếp tục
+            Nhập tài khoản để bắt đầu
         </p>
 
     </div>
 
 
-    <!-- THÔNG BÁO -->
+    <!-- MESSAGE -->
 
     <div
         id="message"
         class="message">
+
     </div>
 
 
-    <!-- TÀI KHOẢN -->
+    <!-- USERNAME -->
 
     <div class="input-group">
 
@@ -435,7 +576,7 @@ body{
     </div>
 
 
-    <!-- MẬT KHẨU -->
+    <!-- PASSWORD -->
 
     <div class="input-group">
 
@@ -443,7 +584,7 @@ body{
             Mật khẩu
         </label>
 
-        <div class="password">
+        <div class="password-box">
 
             <input
                 id="password"
@@ -452,9 +593,9 @@ body{
                 autocomplete="current-password">
 
             <button
-                class="eye"
                 type="button"
-                onclick="showPassword()">
+                class="password-button"
+                onclick="togglePassword()">
 
                 👁
 
@@ -465,7 +606,7 @@ body{
     </div>
 
 
-    <!-- GHI NHỚ -->
+    <!-- REMEMBER -->
 
     <label class="remember">
 
@@ -478,16 +619,29 @@ body{
     </label>
 
 
-    <!-- NÚT -->
+    <!-- LOGIN -->
 
     <button
-        class="login-btn"
+        class="login-button"
         onclick="login()">
 
         ĐĂNG NHẬP
 
     </button>
 
+
+    <!-- LOADING -->
+
+    <div
+        id="loading"
+        class="loading">
+
+        Đang vào El Dorado...
+
+    </div>
+
+
+    <!-- FOOTER -->
 
     <div class="footer">
 
@@ -502,11 +656,36 @@ body{
 
 <script>
 
-/* =========================
-   HIỆN MẬT KHẨU
-========================= */
+/* =====================================================
+   HỖ TRỢ HIỆN THÔNG BÁO
+===================================================== */
 
-function showPassword(){
+function showMessage(
+    text,
+    type
+){
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        "message show " +
+        type;
+}
+
+
+/* =====================================================
+   HIỆN / ẨN MẬT KHẨU
+===================================================== */
+
+function togglePassword(){
 
     const password =
         document.getElementById(
@@ -515,7 +694,7 @@ function showPassword(){
 
     const button =
         document.querySelector(
-            ".eye"
+            ".password-button"
         );
 
 
@@ -530,7 +709,9 @@ function showPassword(){
         button.textContent =
             "🙈";
 
-    }else{
+    }
+
+    else{
 
         password.type =
             "password";
@@ -543,53 +724,36 @@ function showPassword(){
 }
 
 
-/* =========================
-   THÔNG BÁO
-========================= */
-
-function message(
-    text,
-    type
-){
-
-    const box =
-        document.getElementById(
-            "message"
-        );
-
-    box.textContent =
-        text;
-
-    box.className =
-        "message show " +
-        type;
-
-}
-
-
-/* =========================
+/* =====================================================
    ĐĂNG NHẬP
-========================= */
+===================================================== */
 
 function login(){
 
     const username =
-        document.getElementById(
-            "username"
-        )
-        .value
-        .trim();
+        document
+            .getElementById(
+                "username"
+            )
+            .value
+            .trim();
+
 
     const password =
-        document.getElementById(
-            "password"
-        )
-        .value;
+        document
+            .getElementById(
+                "password"
+            )
+            .value;
 
 
-    if(!username){
+    /* Kiểm tra tài khoản */
 
-        message(
+    if(
+        username.length === 0
+    ){
+
+        showMessage(
             "Vui lòng nhập tài khoản.",
             "error"
         );
@@ -598,9 +762,13 @@ function login(){
     }
 
 
-    if(!password){
+    /* Kiểm tra mật khẩu */
 
-        message(
+    if(
+        password.length === 0
+    ){
+
+        showMessage(
             "Vui lòng nhập mật khẩu.",
             "error"
         );
@@ -610,19 +778,154 @@ function login(){
 
 
     /*
-       HIỆN TẠI CHỈ LÀ
-       GIAO DIỆN ĐĂNG NHẬP.
-
-       Chưa kết nối database.
+       Lưu tên người chơi.
+       Sau này giaodien.html
+       có thể lấy tên này.
     */
 
+    localStorage.setItem(
+        "eldoradoPlayerName",
+        username
+    );
 
-    message(
+
+    /*
+       Lưu trạng thái đăng nhập.
+    */
+
+    localStorage.setItem(
+        "eldoradoLoggedIn",
+        "true"
+    );
+
+
+    /*
+       Ghi nhớ tài khoản
+    */
+
+    const remember =
+        document.getElementById(
+            "remember"
+        ).checked;
+
+
+    if(remember){
+
+        localStorage.setItem(
+            "eldoradoRememberedName",
+            username
+        );
+
+    }
+
+    else{
+
+        localStorage.removeItem(
+            "eldoradoRememberedName"
+        );
+
+    }
+
+
+    /* Hiện thông báo */
+
+    showMessage(
         "Đăng nhập thành công!",
         "success"
     );
 
+
+    /*
+       Hiện loading
+    */
+
+    document
+        .getElementById(
+            "loading"
+        )
+        .classList
+        .add("show");
+
+
+    /*
+       Chờ một chút rồi
+       chuyển sang giaodien.html
+    */
+
+    setTimeout(
+
+        function(){
+
+            window.location.href =
+                "giaodien.html";
+
+        },
+
+        700
+
+    );
+
 }
+
+
+/* =====================================================
+   NHẤN ENTER ĐỂ ĐĂNG NHẬP
+===================================================== */
+
+document
+    .getElementById("password")
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key ===
+                "Enter"
+            ){
+
+                login();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   TỰ ĐIỀN TÀI KHOẢN
+===================================================== */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        const savedName =
+            localStorage.getItem(
+                "eldoradoRememberedName"
+            );
+
+
+        if(savedName){
+
+            document
+                .getElementById(
+                    "username"
+                )
+                .value =
+                    savedName;
+
+
+            document
+                .getElementById(
+                    "remember"
+                )
+                .checked =
+                    true;
+
+        }
+
+    }
+);
 
 </script>
 
