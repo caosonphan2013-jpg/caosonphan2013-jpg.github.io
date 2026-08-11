@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>El Dorado</title>
+  <title>El Dorado Game Background</title>
   <style>
+    /* Reset code để ảnh tràn màn hình */
     * {
       margin: 0;
       padding: 0;
@@ -14,22 +15,29 @@
     body, html {
       height: 100%;
       width: 100%;
-      overflow: hidden;
-      background-color: #000;
+      overflow: hidden; /* Không cho cuộn trang */
+      background-color: #000; /* Nền đen trong lúc đợi tải ảnh */
     }
 
+    /* Vùng chứa ảnh nền */
     .game-background {
       height: 100%;
       width: 100%;
-      background-image: url('nengame.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      
+      /* --- CHỖ QUAN TRỌNG NHẤT --- */
+      /* Đổi 'nengame.jpg' thành tên file ảnh bạn sẽ úp lên GitHub (ví dụ: bggame.png) */
+      background-image: url('nengame.jpg'); 
+      /* ----------------------------- */
+
+      background-size: cover;    /* Ảnh phủ kín màn hình, không bị méo */
+      background-position: center; /* Ảnh luôn nằm giữa */
+      background-repeat: no-repeat; /* Không lặp lại ảnh */
     }
   </style>
 </head>
 <body>
 
+  <!-- Đây là vùng hiển thị ảnh nền -->
   <div class="game-background"></div>
 
 </body>
