@@ -12,6 +12,7 @@
 <title>EL DORADO</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -30,9 +31,9 @@ body{
     font-family:Arial,Helvetica,sans-serif;
 }
 
-/* =========================
-   GAME SCREEN
-========================= */
+/* =========================================
+   GAME
+========================================= */
 
 #game{
     position:fixed;
@@ -41,12 +42,14 @@ body{
     background:#000;
 }
 
-/* =========================
-   NỀN GAME
-========================= */
+
+/* =========================================
+   ẢNH NỀN
+========================================= */
 
 #gameImage{
     position:absolute;
+
     left:50%;
     top:50%;
 
@@ -63,18 +66,20 @@ body{
     -webkit-user-drag:none;
 }
 
-/* =========================
+
+/* =========================================
    LỚP NÚT
-========================= */
+========================================= */
 
 #buttons{
-    position:absolute;
 
-    width:1536px;
-    height:864px;
+    position:absolute;
 
     left:50%;
     top:50%;
+
+    width:1536px;
+    height:864px;
 
     transform:
         translate(-50%,-50%)
@@ -85,10 +90,17 @@ body{
     pointer-events:none;
 }
 
+
+/* =========================================
+   NÚT TRONG SUỐT
+========================================= */
+
 .hit{
+
     position:absolute;
 
-    border:0;
+    border:none;
+
     background:transparent;
 
     pointer-events:auto;
@@ -98,19 +110,27 @@ body{
     -webkit-tap-highlight-color:transparent;
 }
 
+
+/* Hiệu ứng khi chạm */
+
 .hit:active{
-    background:rgba(255,215,80,.16);
+
+    background:
+        rgba(255,215,80,.14);
 
     box-shadow:
         inset 0 0 0 2px
-        rgba(255,215,80,.45);
+        rgba(255,215,80,.4);
+
 }
 
-/* =========================
+
+/* =========================================
    PROFILE
-========================= */
+========================================= */
 
 .profile{
+
     left:18px;
     top:18px;
 
@@ -118,167 +138,210 @@ body{
     height:92px;
 }
 
-/* =========================
+
+/* =========================================
    TÀI NGUYÊN
-========================= */
+========================================= */
 
 .resource1{
+
     left:505px;
     top:12px;
 
     width:190px;
     height:62px;
+
 }
 
 .resource2{
+
     left:705px;
     top:12px;
 
     width:190px;
     height:62px;
+
 }
 
 .resource3{
+
     left:905px;
     top:12px;
 
     width:190px;
     height:62px;
+
 }
 
 .resource4{
+
     left:1105px;
     top:12px;
 
     width:175px;
     height:62px;
+
 }
 
-/* =========================
-   ICON GÓC PHẢI
-========================= */
+
+/* =========================================
+   GÓC PHẢI
+========================================= */
 
 .mail{
+
     right:170px;
     top:7px;
 
     width:63px;
     height:63px;
+
 }
 
 .menu{
+
     right:100px;
     top:7px;
 
     width:63px;
     height:63px;
+
 }
 
 .settings{
+
     right:30px;
     top:7px;
 
     width:63px;
     height:63px;
+
 }
 
-/* =========================
+
+/* =========================================
    EVENT
-========================= */
+========================================= */
 
 .monthly{
+
     right:30px;
-    top:105px;
+    top:104px;
 
     width:305px;
     height:140px;
+
 }
 
 .special{
+
     right:25px;
     top:270px;
 
     width:130px;
     height:165px;
+
 }
 
-/* =========================
+
+/* =========================================
    MENU DƯỚI
-========================= */
+========================================= */
 
 .lapnhom{
+
     left:25px;
     bottom:8px;
 
     width:125px;
     height:120px;
+
 }
 
 .nangcap{
+
     left:165px;
     bottom:8px;
 
     width:125px;
     height:120px;
+
 }
 
 .draw{
+
     left:305px;
     bottom:8px;
 
     width:125px;
     height:120px;
+
 }
 
 .shop{
+
     left:445px;
     bottom:8px;
 
     width:125px;
     height:120px;
+
 }
 
 .thanhtich{
+
     left:585px;
     bottom:8px;
 
     width:135px;
     height:120px;
+
 }
 
 .banghoi{
+
     left:735px;
     bottom:8px;
 
     width:130px;
     height:120px;
+
 }
 
-/* =========================
+
+/* =========================================
    GAME START
-========================= */
+========================================= */
 
 .game-start{
+
     right:0;
     bottom:0;
 
     width:385px;
     height:145px;
 
-    border-radius:40px 0 0 0;
+    border-radius:
+        40px 0 0 0;
+
 }
 
-/* =========================
+
+/* =========================================
    RESPONSIVE
-========================= */
+========================================= */
 
 @media(max-width:700px){
 
     #gameImage{
+
         width:100vw;
         height:100vh;
+
     }
+
 }
+
 </style>
 </head>
 
@@ -286,366 +349,220 @@ body{
 
 <div id="game">
 
-    <!-- NỀN -->
+
+    <!-- =====================================
+         NỀN
+    ====================================== -->
+
     <img
         id="gameImage"
-        src="nengame.png"
-        alt="El Dorado">
+        src="./nengame.png"
+        alt="EL DORADO">
 
-    <!-- NÚT -->
+
+    <!-- =====================================
+         NÚT
+    ====================================== -->
+
     <div id="buttons">
 
+
         <!-- PROFILE -->
+
         <button
             class="hit profile"
             onclick="profile()">
         </button>
 
+
         <!-- RESOURCES -->
+
         <button
             class="hit resource1"
-            onclick="resource(1)">
+            onclick="showInfo('Tài nguyên')">
         </button>
 
         <button
             class="hit resource2"
-            onclick="resource(2)">
+            onclick="showInfo('Vàng: 700,000')">
         </button>
 
         <button
             class="hit resource3"
-            onclick="resource(3)">
+            onclick="showInfo('Ngọc: 665')">
         </button>
 
         <button
             class="hit resource4"
-            onclick="resource(4)">
+            onclick="showInfo('B.P: 0')">
         </button>
 
-        <!-- TOP RIGHT -->
+
+        <!-- GÓC PHẢI -->
+
         <button
             class="hit mail"
-            onclick="mail()">
+            onclick="showInfo('Hộp thư')">
         </button>
 
         <button
             class="hit menu"
-            onclick="menu()">
+            onclick="showInfo('Menu')">
         </button>
 
         <button
             class="hit settings"
-            onclick="settings()">
+            onclick="showInfo('Cài đặt')">
         </button>
 
+
         <!-- EVENT -->
+
         <button
             class="hit monthly"
-            onclick="monthly()">
+            onclick="showInfo('Monthly Character')">
         </button>
 
         <button
             class="hit special"
-            onclick="special()">
+            onclick="showInfo('Special Event')">
         </button>
 
-        <!-- BOTTOM -->
+
+        <!-- =================================
+             LẬP NHÓM
+        ================================== -->
+
         <button
             class="hit lapnhom"
             onclick="openLapNhom()">
         </button>
 
+
+        <!-- CÁC NÚT KHÁC -->
+
         <button
             class="hit nangcap"
-            onclick="nangCap()">
+            onclick="showInfo('Nâng cấp')">
         </button>
 
         <button
             class="hit draw"
-            onclick="draw()">
+            onclick="showInfo('Draw')">
         </button>
 
         <button
             class="hit shop"
-            onclick="shop()">
+            onclick="showInfo('Shop')">
         </button>
 
         <button
             class="hit thanhtich"
-            onclick="thanhTich()">
+            onclick="showInfo('Thành tích')">
         </button>
 
         <button
             class="hit banghoi"
-            onclick="bangHoi()">
+            onclick="showInfo('Bang hội')">
         </button>
 
+
         <!-- GAME START -->
+
         <button
             class="hit game-start"
-            onclick="gameStart()">
+            onclick="showInfo('GAME START')">
         </button>
 
     </div>
+
 </div>
+
 
 <script>
 
-/* =====================================================
+/* =========================================
    LẬP NHÓM
-===================================================== */
+========================================= */
 
 function openLapNhom(){
 
-    window.location.href =
-        "lap-nhom.html";
+    /*
+       Dùng đường dẫn tương đối chính xác.
+       Không có popup.
+       Không gọi tính năng đang phát triển.
+    */
+
+    window.location.assign(
+        "./lap-nhom.html"
+    );
 
 }
 
 
-/* =====================================================
+/* =========================================
    PROFILE
-===================================================== */
+========================================= */
 
 function profile(){
 
+    const name =
+        localStorage.getItem(
+            "eldoradoPlayerName"
+        ) || "Người chơi";
+
     alert(
         "Nhân vật\n\n" +
-        "Tên: " +
-        (localStorage.getItem(
-            "eldoradoPlayerName"
-        ) || "Người chơi")
+        "Tên: " + name
     );
 
 }
 
 
-/* =====================================================
-   RESOURCE
-===================================================== */
+/* =========================================
+   INFO
+========================================= */
 
-function resource(number){
+function showInfo(text){
 
-    if(number === 1){
-
-        alert("Tài nguyên hiện tại: 0");
-
-    }
-
-    else if(number === 2){
-
-        alert("Vàng: 700,000");
-
-    }
-
-    else if(number === 3){
-
-        alert("Ruby: 665");
-
-    }
-
-    else if(number === 4){
-
-        alert("B.P: 0");
-
-    }
+    alert(text);
 
 }
 
 
-/* =====================================================
-   TOP BUTTONS
-===================================================== */
-
-function mail(){
-
-    alert(
-        "Hộp thư\n\n" +
-        "Chưa có thư mới."
-    );
-
-}
-
-
-function menu(){
-
-    alert(
-        "Menu\n\n" +
-        "Các tính năng khác sẽ được thêm sau."
-    );
-
-}
-
-
-function settings(){
-
-    alert(
-        "Cài đặt\n\n" +
-        "Âm thanh: Bật\n" +
-        "Nhạc: Bật"
-    );
-
-}
-
-
-/* =====================================================
-   EVENT
-===================================================== */
-
-function monthly(){
-
-    alert(
-        "Monthly Character\n\n" +
-        "Sự kiện nhân vật hàng tháng."
-    );
-
-}
-
-
-function special(){
-
-    alert(
-        "Special Event\n\n" +
-        "Sự kiện đặc biệt."
-    );
-
-}
-
-
-/* =====================================================
-   MENU DƯỚI
-===================================================== */
-
-function nangCap(){
-
-    alert(
-        "Nâng cấp\n\n" +
-        "Chức năng sẽ được phát triển."
-    );
-
-}
-
-
-function draw(){
-
-    alert(
-        "Draw\n\n" +
-        "Chức năng quay nhân vật."
-    );
-
-}
-
-
-function shop(){
-
-    alert(
-        "Shop\n\n" +
-        "Cửa hàng đang được chuẩn bị."
-    );
-
-}
-
-
-function thanhTich(){
-
-    alert(
-        "Thành tích\n\n" +
-        "Bạn chưa có thành tích."
-    );
-
-}
-
-
-function bangHoi(){
-
-    alert(
-        "Bang hội\n\n" +
-        "Chức năng bang hội sẽ được thêm sau."
-    );
-
-}
-
-
-/* =====================================================
-   GAME START
-===================================================== */
-
-function gameStart(){
-
-    alert(
-        "GAME START\n\n" +
-        "Bước tiếp theo sẽ là màn hình chọn nhân vật."
-    );
-
-}
-
-
-/* =====================================================
-   KIỂM TRA ẢNH
-===================================================== */
-
-document
-    .getElementById("gameImage")
-    .addEventListener(
-        "error",
-        function(){
-
-            document.body.innerHTML = `
-                <div style="
-                    width:100vw;
-                    height:100vh;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    background:#111;
-                    color:white;
-                    font-family:Arial;
-                    text-align:center;
-                    padding:30px;
-                ">
-                    <div>
-                        <h2>❌ Không tải được nengame.png</h2>
-                        <p>
-                            Hãy kiểm tra file
-                            <b>nengame.png</b>
-                            có nằm cùng thư mục với
-                            <b>giaodien.html</b> không.
-                        </p>
-                    </div>
-                </div>
-            `;
-
-        }
-    );
-
-
-/* =====================================================
-   RESPONSIVE SCALE
-===================================================== */
+/* =========================================
+   SCALE
+========================================= */
 
 function resizeGame(){
 
-    const layer =
+    const buttons =
         document.getElementById(
             "buttons"
         );
 
-    const screenW =
+    const width =
         window.innerWidth;
 
-    const screenH =
+    const height =
         window.innerHeight;
 
-    const designW = 1536;
-    const designH = 864;
+
+    const designWidth =
+        1536;
+
+    const designHeight =
+        864;
+
 
     const scale =
         Math.min(
-            screenW / designW,
-            screenH / designH
+            width / designWidth,
+            height / designHeight
         );
 
-    layer.style.transform =
+
+    buttons.style.transform =
         "translate(-50%,-50%) " +
         "scale(" +
         scale +
@@ -658,6 +575,7 @@ window.addEventListener(
     "resize",
     resizeGame
 );
+
 
 window.addEventListener(
     "orientationchange",
